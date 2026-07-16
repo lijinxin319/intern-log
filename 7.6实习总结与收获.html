@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月6日</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --border: #e4e8f0;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #3D6F94;
+    --accent-soft: #E9F1F6;
+    --accent-dark: #2c5270;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #245c55;
+    --teal-soft: #dcebe7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #3D6F94 0%, #2c5270 100%); border-radius: 14px; padding: 32px 30px; color: #fff; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 14px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 16px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 600; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 14px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .card p { color: var(--text2); font-size: 13.5px; margin-bottom: 8px; }
+  .card ul { padding-left: 18px; color: var(--text2); font-size: 13.5px; }
+  .card ul li { margin-bottom: 5px; }
+
+  /* Overview cards */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .ov-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; position: relative; }
+  .ov-card .ov-icon { font-size: 20px; margin-bottom: 6px; }
+  .ov-card .ov-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .ov-card .ov-desc { font-size: 11.5px; color: var(--text3); margin-bottom: 8px; }
+  .ov-card .ov-stat { font-size: 18px; font-weight: 700; color: var(--accent); }
+  .ov-card .ov-stat-label { font-size: 10.5px; color: var(--text3); }
+  .ov-card.a { border-top: 3px solid var(--accent); }
+  .ov-card.b { border-top: 3px solid var(--teal); }
+  .ov-card.c { border-top: 3px solid var(--orange); }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .score-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .score-desc { font-size: 11.5px; color: var(--text2); margin-top: 5px; line-height: 1.4; }
+
+  /* Bar chart */
+  .bar-row { display: flex; align-items: center; margin-bottom: 8px; gap: 10px; }
+  .bar-label { width: 130px; font-size: 12px; color: var(--text2); flex-shrink: 0; text-align: right; }
+  .bar-wrap { flex: 1; background: #eaedf3; border-radius: 4px; height: 20px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; }
+  .bar-val { font-size: 11px; font-weight: 600; color: #fff; }
+  .b-accent { background: var(--accent); }
+  .b-orange { background: var(--orange); }
+  .b-green { background: var(--green); }
+  .b-purple { background: var(--purple); }
+
+  /* Tag pills */
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-blue { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-purple { background: var(--purple-soft); border: 1px solid var(--purple); color: var(--purple); }
+  .pill-gray { background: #f0f2f5; border: 1px solid var(--border); color: var(--text3); }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #F0F3F8; color: var(--text2); font-weight: 500; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data tr:hover td { background: #FAFBFE; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); }
+
+  /* Match table */
+  table.match { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.match th { padding: 10px 12px; text-align: center; font-weight: 600; color: #fff; }
+  table.match th.h1 { background: var(--accent); }
+  table.match th.h2 { background: var(--teal); }
+  table.match th.h3 { background: var(--orange); }
+  table.match td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  table.match .dim { font-weight: 500; background: #f8f9fc; width: 110px; }
+  table.match .c1 { background: var(--accent-soft); text-align: center; }
+  table.match .c2 { background: var(--teal-soft); text-align: center; }
+  table.match .c3 { background: var(--orange-soft); text-align: center; }
+
+  /* Insight box */
+  .insight { border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+  .insight.blue { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .insight.teal { background: var(--teal-soft); border: 1px solid var(--teal); }
+  .insight.orange { background: var(--orange-soft); border: 1px solid #E8A47F; }
+  .insight.green { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .insight h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .insight.blue h4 { color: var(--accent); }
+  .insight.teal h4 { color: var(--teal); }
+  .insight.orange h4 { color: var(--orange); }
+  .insight.green h4 { color: var(--green); }
+  .insight p { font-size: 13px; color: var(--text); }
+
+  /* Tier badge */
+  .tier-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+  .tier-1 { background: #fef3c7; color: #92400e; }
+  .tier-2 { background: #e0e7ff; color: #3730a3; }
+  .tier-3 { background: #f3f4f6; color: #6b7280; }
+
+  /* Compliance tags */
+  .comp-tag { display: inline-block; padding: 4px 12px; border-radius: 16px; font-size: 11px; font-weight: 600; margin: 3px; }
+  .comp-must { background: var(--orange-soft); color: var(--orange); border: 1px solid #E8A47F; }
+  .comp-rec { background: var(--yellow-soft); color: var(--yellow); border: 1px solid #E6C070; }
+
+  /* Reflection list */
+  .reflect-list { list-style: none; }
+  .reflect-list li { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .reflect-list li:last-child { border-bottom: none; }
+  .reflect-num { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .reflect-list .rl-title { font-weight: 600; color: var(--text); font-size: 13.5px; margin-bottom: 3px; }
+  .reflect-list .rl-desc { font-size: 12.5px; color: var(--text2); }
+
+  /* Highlight text */
+  .hl { color: var(--accent); font-weight: 600; }
+  .hl-orange { color: var(--orange); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
+
+  .footer-note { font-size: 11.5px; color: var(--text3); margin-top: 18px; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.8; }
+
+  @media (max-width: 760px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .bar-label { width: 100px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月6日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">跨境电商选品实习 · 德国吊扇灯品类深度分析 + 销量预测 + 咖啡机供应商对比</div>
+    <div class="tags">
+      <span class="tag">📊 吊扇灯市场分析</span>
+      <span class="tag">📈 销量预测建模</span>
+      <span class="tag">🏭 供应商报价对比</span>
+    </div>
+  </div>
+
+  <!-- 今日工作概览 -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日工作概览</div>
+    <div class="overview-grid">
+      <div class="ov-card a">
+        <div class="ov-icon">📊</div>
+        <div class="ov-title">吊扇灯市场深度分析</div>
+        <div class="ov-desc">亚马逊德国站 SeekerAI 全维度拆解</div>
+        <div class="ov-stat">10+ <span class="ov-stat-label">竞品梯队划分</span></div>
+        <div style="margin-top:6px;"><span class="pill pill-blue">市场分析</span><span class="pill pill-blue">竞争格局</span></div>
+      </div>
+      <div class="ov-card b">
+        <div class="ov-icon">📈</div>
+        <div class="ov-title">2026-2027销量预测</div>
+        <div class="ov-desc">基于塔扇基准数据同口径推算</div>
+        <div class="ov-stat">5% <span class="ov-stat-label">市占订货建议</span></div>
+        <div style="margin-top:6px;"><span class="pill pill-green">预测建模</span><span class="pill pill-green">订货策略</span></div>
+      </div>
+      <div class="ov-card c">
+        <div class="ov-icon">🏭</div>
+        <div class="ov-title">咖啡机供应商报价对比</div>
+        <div class="ov-desc">4家供应商 / 22款商用咖啡机</div>
+        <div class="ov-stat">22 <span class="ov-stat-label">款产品价格梳理</span></div>
+        <div style="margin-top:6px;"><span class="pill pill-orange">供应商开发</span><span class="pill pill-yellow">汇率换算</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <p>今天完成了三项核心工作：<strong>一是基于亚马逊德国站 SeekerAI 数据，完成了吊扇灯（Lampe mit Ventilator）品类的全维度市场分析</strong>，覆盖竞争格局、消费者痛点、价格带与合规门槛；<strong>二是基于塔扇欧洲预测报告口径，建立了德国吊扇灯 2026-2027 销量预测模型并输出 5% 市占订货建议</strong>；<strong>三是梳理了 4 家供应商共 22 款商用咖啡机的完整报价对比</strong>，完成汇率换算与价格梯队分析。三项工作形成了"市场研判→需求量化→供应链对照"的完整闭环。</p>
+    </div>
+  </div>
+
+  <!-- 任务一：吊扇灯市场分析 -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> 德国吊扇灯市场深度分析</div>
+
+    <div class="card highlight">
+      <h3>核心结论：品类处于成长期，中低集中度可切入</h3>
+      <p>基于亚马逊德国站 SeekerAI 数据，吊扇灯品类近30天销量 <span class="hl">5,279 件</span>，月环比增长 <span class="hl">+288%</span>，总流量 <span class="hl">2.22M</span>，综合评分 80.28。市场集中度低（CR3 < 40%），无绝对垄断品牌，中国卖家已占据 <span class="hl-orange">63% GMV</span>，供应链端有天然优势。季节性强（5-8月峰值），需提前 2-3 个月布局库存。</p>
+    </div>
+
+    <!-- 关键市场指标 -->
+    <div class="card">
+      <h3>关键市场指标</h3>
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="score-num">5,279</div>
+          <div class="score-label">近30天销量（件）</div>
+          <div class="score-desc">月环比 +288%<br>旺季爆发期</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">€78.73</div>
+          <div class="score-label">市场均价</div>
+          <div class="score-desc">新品均价 €75.48<br>品质敏感型市场</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">59</div>
+          <div class="score-label">活跃卖家数</div>
+          <div class="score-desc">82个品牌<br>分散型竞争格局</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">31%</div>
+          <div class="score-label">产品集中度 CRn</div>
+          <div class="score-desc">低集中 · 新品牌<br>可切入</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 竞品梯队 -->
+    <div class="card">
+      <h3>竞品梯队划分</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>梯队</th><th>代表品牌 / ASIN</th><th>价格带</th><th>月销量</th><th>评分</th><th>核心特征</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tier-badge tier-1">第一梯队</span></td>
+              <td>BKZO B0CPDLJF49</td>
+              <td class="num-cell">€82.99</td>
+              <td class="num-cell">722 件</td>
+              <td>4.5★ (379)</td>
+              <td>24档调速 + 双向旋转，毛利率 63%</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-1">第一梯队</span></td>
+              <td>BKZO B0BFHKKS9B</td>
+              <td class="num-cell">€114.99</td>
+              <td class="num-cell">572 件</td>
+              <td>4.2★ (1,341)</td>
+              <td>品类最高 Review 数，品牌词自带流量</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-1">第一梯队</span></td>
+              <td>Proventa B0C59J94DZ</td>
+              <td class="num-cell">€139.00</td>
+              <td class="num-cell">380 件</td>
+              <td>4.5★ (259)</td>
+              <td>高端旗舰，品牌溢价明显</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-2">第二梯队</span></td>
+              <td>Oraymin / YUNZI / MiiR</td>
+              <td class="num-cell">€60-90</td>
+              <td class="num-cell">~260-310 件</td>
+              <td>4.0-4.3★</td>
+              <td>中坚力量，产品力均衡，价格带竞争激烈</td>
+            </tr>
+            <tr>
+              <td><span class="tier-badge tier-3">第三梯队</span></td>
+              <td>ZeiLaBang B0F1D3DHMR</td>
+              <td class="num-cell">€22.99</td>
+              <td class="num-cell">213 件</td>
+              <td>3.8★</td>
+              <td>极低价冲量，品类最低评分，纯价格驱动</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 消费者痛点 -->
+    <div class="card">
+      <h3>VOC 负面评论挖掘 — 六大痛点与机会</h3>
+      <div class="insight orange">
+        <h4>🔴 高频痛点 1：安装说明书极差 / 安装困难</h4>
+        <p>多个品牌（CJOY、Newday、BKZO）均被投诉安装说明书不清晰、缺少德语说明。产品 100% 需自行安装，安装体验直接决定开箱退货率。<span class="hl-green">机会点：</span>制作德语视频安装指南 + 分步图解手册 + QR 码直达 YouTube。</p>
+      </div>
+      <div class="insight orange">
+        <h4>🔴 高频痛点 2：噪音过大 / 异常噪音</h4>
+        <p>德国消费者对噪音极度敏感，尤其在卧室场景。BLDC 直流无刷电机远优于 AC 交流电机，但成本高出 30-50%。<span class="hl-green">机会点：</span>使用 BLDC 电机并标注 dB 分贝值（&lt;35dB），瞄准卧室场景打出"静音"差异。</p>
+      </div>
+      <div class="insight blue">
+        <h4>🟡 中频痛点 3-4：遥控器配对失败 + 开箱即损</h4>
+        <p>遥控器无法配对、信号不稳定；灯珠不亮、风扇不转等品控问题频发。<span class="hl-green">机会点：</span>出厂预配对 + 双模控制 + 加固包装 + FBA 入库前抽检。</p>
+      </div>
+      <div class="insight blue">
+        <h4>🟢 低频但高价值痛点 5-6：色温偏冷 + 缺少德语客服</h4>
+        <p>德国消费者偏好暖光（2700-3000K），部分产品最低仅 3000K；中国卖家普遍无法提供德语售后。<span class="hl-green">机会点：</span>2700-6500K 全色温 + 德语客服 + 2 年欧盟质保。</p>
+      </div>
+    </div>
+
+    <!-- 价格带分析 -->
+    <div class="card">
+      <h3>价格带 - 销售额分布</h3>
+      <div class="bar-row">
+        <div class="bar-label">€20-50 流量入口</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:100%;"><span class="bar-val">37%</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">€80-90 主力带</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:54%;"><span class="bar-val">20%</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">€90-100 主力带</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:46%;"><span class="bar-val">17%</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">€50-80 过渡带</div>
+        <div class="bar-wrap"><div class="bar-fill b-orange" style="width:41%;"><span class="bar-val">15%</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">€100+ 高端</div>
+        <div class="bar-wrap"><div class="bar-fill b-purple" style="width:30%;"><span class="bar-val">11%</span></div></div>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--text3);">价格甜点区识别：€39-55 区间 — 竞争密度低于 €20-30 极低价区，消费者愿为"品质+功能"支付溢价</div>
+    </div>
+
+    <!-- 合规门槛 -->
+    <div class="card">
+      <h3>准入门槛与合规风险</h3>
+      <div style="margin-bottom:12px;">
+        <span class="comp-tag comp-must">CE 标志 · 强制</span>
+        <span class="comp-tag comp-must">RoHS · 强制</span>
+        <span class="comp-tag comp-must">LVD 低压指令 · 强制</span>
+        <span class="comp-tag comp-must">EMC 电磁兼容 · 强制</span>
+        <span class="comp-tag comp-must">WEEE 注册 · 强制</span>
+        <span class="comp-tag comp-must">ErP 能效标签 · 强制</span>
+        <span class="comp-tag comp-rec">REACH · 推荐</span>
+        <span class="comp-tag comp-rec">GS 安全认证 · 推荐</span>
+      </div>
+      <p style="font-size:12.5px;color:var(--text2);"><span class="hl-orange">WEEE 注册是德国站一票否决项：</span>自 2023 年起亚马逊德国站强制要求，未注册 = 产品下架 + 店铺关停。注册周期 4-12 周，必须提前启动。成本结构测算（€49.99 MSRP）：工厂出厂价 €15.00 + 头程 €3.50 + 关税 €0.74 + FBA €6.50 + 佣金 €7.50 + 广告 €5.00 + 退货 €1.50 = 总成本 €39.74，<span class="hl">净利润 €10.25（20.5%）</span>。</p>
+    </div>
+  </div>
+
+  <!-- 任务二：销量预测 -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 德国吊扇灯 2026-2027 销量预测</div>
+
+    <div class="card highlight" style="border-color:var(--teal);background:var(--teal-soft);">
+      <h3>核心结论：2026 年备货 10,000-11,000 台，首批 6,000-7,000 台</h3>
+      <p>基于塔扇欧洲预测报告口径同口径推算，2026 年德国吊扇灯市场容量预测为 <span class="hl">16-29 万台</span>（中位 21 万台）。若取得 5% 市占，对应销量 <span class="hl">0.8-1.45 万台</span>（中位约 10,500 台）。建议全年备货 10,000-11,000 台，首批先下 6,000-7,000 台，等广告、评论和渠道动销验证后再追加 4,000-5,000 台。</p>
+    </div>
+
+    <!-- 推算逻辑 -->
+    <div class="card">
+      <h3>推算逻辑（三步法）</h3>
+      <div class="score-grid">
+        <div class="score-card" style="border-top:3px solid var(--accent);">
+          <div class="score-num">516<span style="font-size:13px;">万台</span></div>
+          <div class="score-label">第一步：德国风扇总盘子</div>
+          <div class="score-desc">塔扇 2025 基准 98 万台 ÷ 塔扇占比 19%</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--teal);">
+          <div class="score-num">2.5-4.0%</div>
+          <div class="score-label">第二步：吊扇灯渗透占比</div>
+          <div class="score-desc">安装型产品转化率低<br>正常年份 13-21 万台</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--orange);">
+          <div class="score-num">+25~40%</div>
+          <div class="score-label">第三步：热夏+产品创新系数</div>
+          <div class="score-desc">无叶化外观 / 4米送风 /<br>正反转冬夏双模式</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--green);">
+          <div class="score-num">16-29<span style="font-size:13px;">万台</span></div>
+          <div class="score-label">2026 预测区间</div>
+          <div class="score-desc">中位预测：约 21 万台</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 销量预测表 -->
+    <div class="card">
+      <h3>2026-2027 销量预测</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>年份</th><th>低情景</th><th>中情景</th><th>高情景</th><th>判断依据</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2026</strong></td>
+              <td class="num-cell">16 万台</td>
+              <td class="num-cell" style="color:var(--orange);">21 万台</td>
+              <td class="num-cell">29 万台</td>
+              <td>热夏刺激明显，但安装门槛限制爆发速度</td>
+            </tr>
+            <tr>
+              <td><strong>2027</strong></td>
+              <td class="num-cell">14 万台</td>
+              <td class="num-cell" style="color:var(--green);">18 万台</td>
+              <td class="num-cell">25 万台</td>
+              <td>热浪回落，保留"节能空气循环+灯具升级"结构性需求</td>
+            </tr>
+            <tr style="background:#faf8f1;font-weight:700;">
+              <td>2026-2027 合计</td>
+              <td class="num-cell">30 万台</td>
+              <td class="num-cell">39 万台</td>
+              <td class="num-cell">54 万台</td>
+              <td>两年是吊扇灯在德国的品类教育窗口</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5%市占订货建议 -->
+    <div class="card">
+      <h3>5% 市占对应订货量</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>口径</th><th>低情景</th><th>中情景</th><th>高情景</th><th>订货建议</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2026 单年 5%</strong></td>
+              <td class="num-cell">8,000 台</td>
+              <td class="num-cell" style="color:var(--orange);">10,500 台</td>
+              <td class="num-cell">14,500 台</td>
+              <td>推荐 10,000-11,000 台作为全年计划量</td>
+            </tr>
+            <tr>
+              <td><strong>两年 5%</strong></td>
+              <td class="num-cell">15,000 台</td>
+              <td class="num-cell" style="color:var(--green);">19,500 台</td>
+              <td class="num-cell">27,000 台</td>
+              <td>供应链框架量，不建议一次性全下</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;padding:12px;">
+          <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;">首批备货</div>
+          <div style="font-size:18px;font-weight:900;color:var(--green);">6,000-7,000 台</div>
+          <div style="font-size:11px;color:var(--text2);">广告/测评/渠道铺货</div>
+        </div>
+        <div style="background:var(--orange-soft);border-left:4px solid var(--orange);border-radius:6px;padding:12px;">
+          <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;">旺季补货</div>
+          <div style="font-size:18px;font-weight:900;color:var(--orange);">4,000-5,000 台</div>
+          <div style="font-size:11px;color:var(--text2);">动销达标后追加</div>
+        </div>
+        <div style="background:var(--yellow-soft);border-left:4px solid var(--yellow);border-radius:6px;padding:12px;">
+          <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;">一次性上限</div>
+          <div style="font-size:18px;font-weight:900;color:var(--yellow);">14,000-15,000 台</div>
+          <div style="font-size:11px;color:var(--text2);">除非有确定渠道订单</div>
+        </div>
+        <div style="background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:6px;padding:12px;">
+          <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;">两年框架量</div>
+          <div style="font-size:18px;font-weight:900;color:var(--accent);">约 20,000 台</div>
+          <div style="font-size:11px;color:var(--text2);">锁供应链，不一次性入仓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 主要风险 -->
+    <div class="card">
+      <h3>主要风险识别</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;">
+          <strong>安装门槛</strong>
+          <p style="font-size:12.5px;margin-top:4px;">德国用户关注灯位承重、电气安全、安装说明、是否适合租房，转化速度慢于普通风扇。</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;">
+          <strong>租房限制</strong>
+          <p style="font-size:12.5px;margin-top:4px;">德国租房比例高，很多用户不愿改动天花板灯位，转化低于桌面风扇和塔扇。</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;">
+          <strong>认证与合规</strong>
+          <p style="font-size:12.5px;margin-top:4px;">CE、RoHS、ERP/能效、电机安全、德语说明书直接影响上架和评价。</p>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;">
+          <strong>季节性波动</strong>
+          <p style="font-size:12.5px;margin-top:4px;">若 2026 夏季热浪弱于预期，吊扇灯不会像移动空调出现恐慌性购买。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 任务三：咖啡机供应商报价对比 -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span> 咖啡机供应商报价对比</div>
+
+    <div class="card highlight" style="border-color:var(--orange);background:var(--orange-soft);">
+      <h3>核心结论：4 家供应商 / 22 款产品，价格跨度 ¥6,100 - ¥33,893</h3>
+      <p>梳理了广东大正、江门麦豪、深圳仰山（Dongyi/Yoshan）、中山美科美 4 家供应商共 22 款双头/三头商用咖啡机的完整报价。按 ECB 2026-07-03 汇率（USD 1≈CNY 6.78，EUR 1≈CNY 7.76）统一换算为欧元，价格区间从最低 <span class="hl-green">¥6,100（€786）</span> 到最高 <span class="hl-orange">¥33,893（€4,368）</span>，跨度达 5.6 倍。</p>
+    </div>
+
+    <!-- 供应商总览 -->
+    <div class="card">
+      <h3>四家供应商总览</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>供应商</th><th>产区</th><th>产品数</th><th>价格区间（RMB）</th><th>≈EUR</th><th>定位特征</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>广东大正</strong></td>
+              <td>广东</td>
+              <td class="num-cell">5 款</td>
+              <td class="num-cell">¥14,500-27,800</td>
+              <td class="num-cell">€1,869-3,582</td>
+              <td>国内一线品牌，CCC/CE/CB 认证，多锅炉旗舰</td>
+            </tr>
+            <tr>
+              <td><strong>江门麦豪</strong></td>
+              <td>广东江门</td>
+              <td class="num-cell">2 款</td>
+              <td class="num-cell">¥6,100-8,650</td>
+              <td class="num-cell">€786-1,114</td>
+              <td>价格最低，出厂价/不含税运</td>
+            </tr>
+            <tr>
+              <td><strong>Dongyi/仰山</strong></td>
+              <td>深圳光明</td>
+              <td class="num-cell">6 款</td>
+              <td class="num-cell">¥8,129-33,893</td>
+              <td class="num-cell">€1,048-4,368</td>
+              <td>≥10台阶梯价，含意大利 GAGGIA 品牌 Vetro</td>
+            </tr>
+            <tr>
+              <td><strong>中山美科美</strong></td>
+              <td>广东中山</td>
+              <td class="num-cell">7 款</td>
+              <td class="num-cell">¥9,611-10,000</td>
+              <td class="num-cell">€1,239-1,289</td>
+              <td>全系标配 PID/T3/预浸泡，6 款为估价</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 价格梯队 -->
+    <div class="card">
+      <h3>价格梯队分布（按 EUR 换算）</h3>
+      <div class="bar-row">
+        <div class="bar-label">大正 KT3-2</div>
+        <div class="bar-wrap"><div class="bar-fill b-purple" style="width:100%;"><span class="bar-val">€3,582 · ¥27,800</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">大正 AT2-2</div>
+        <div class="bar-wrap"><div class="bar-fill b-purple" style="width:68%;"><span class="bar-val">€2,435 · ¥18,900</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">大正 Q2-2T</div>
+        <div class="bar-wrap"><div class="bar-fill b-purple" style="width:62%;"><span class="bar-val">€2,204 · ¥17,100</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">大正 Q2</div>
+        <div class="bar-wrap"><div class="bar-fill b-purple" style="width:52%;"><span class="bar-val">€1,869 · ¥14,500</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">仰山 YS-3207GM</div>
+        <div class="bar-wrap"><div class="bar-fill b-orange" style="width:48%;"><span class="bar-val">€4,368 · ¥33,893</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">美科美全系</div>
+        <div class="bar-wrap"><div class="bar-fill b-green" style="width:36%;"><span class="bar-val">€1,239-1,289 · ¥9,611-10,000</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">麦豪 LZ620</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:22%;"><span class="bar-val">€786 · ¥6,100</span></div></div>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--text3);">
+        <span style="color:var(--purple);">■</span> 大正（高端） &nbsp;|&nbsp;
+        <span style="color:var(--orange);">■</span> 仰山（跨度大） &nbsp;|&nbsp;
+        <span style="color:var(--green);">■</span> 美科美（均衡） &nbsp;|&nbsp;
+        <span style="color:var(--accent);">■</span> 麦豪（低价）
+      </div>
+    </div>
+
+    <!-- 关键参数对比 -->
+    <div class="card">
+      <h3>关键参数对比 — 各供应商代表性产品</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>供应商</th><th>代表型号</th><th>功率(W)</th><th>锅炉</th><th>净重(kg)</th><th>报价(RMB)</th><th>≈EUR</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>大正</td>
+              <td><strong>KT3-2</strong> 多锅炉</td>
+              <td class="num-cell">6,200</td>
+              <td>蒸汽12L+咖啡1L×2</td>
+              <td class="num-cell">78</td>
+              <td class="num-cell" style="color:var(--orange);">¥27,800</td>
+              <td class="num-cell">€3,582</td>
+            </tr>
+            <tr>
+              <td>麦豪</td>
+              <td><strong>LZ620</strong></td>
+              <td class="num-cell">4,500</td>
+              <td>2L+6L</td>
+              <td class="num-cell">46</td>
+              <td class="num-cell" style="color:var(--green);">¥6,100</td>
+              <td class="num-cell">€786</td>
+            </tr>
+            <tr>
+              <td>仰山</td>
+              <td><strong>YS-3120GM</strong></td>
+              <td class="num-cell">4,200</td>
+              <td>550ml×2+5.25L</td>
+              <td class="num-cell">42</td>
+              <td class="num-cell" style="color:var(--green);">¥8,129</td>
+              <td class="num-cell">€1,048</td>
+            </tr>
+            <tr>
+              <td>美科美</td>
+              <td><strong>KS535</strong></td>
+              <td class="num-cell">6,000</td>
+              <td>5L+1L×2</td>
+              <td class="num-cell">47</td>
+              <td class="num-cell" style="color:var(--green);">¥9,611</td>
+              <td class="num-cell">€1,239</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;font-size:12px;color:var(--text3);">美科美全系标配：PID双温控 / T3系统 / 4孔360°蒸汽喷嘴 / 双压力表 / 9Bar / 85-93°C可调 / 预浸泡0-60秒</p>
+    </div>
+  </div>
+
+
+  <div class="footer-note">
+    <strong>数据来源：</strong><br>
+    • SeekerAI（数海云擎）亚马逊德国站市场分析工具 — 吊扇灯品类近30天数据（2026年6月-7月）<br>
+    • GM Insights / Fortune Business Insights — 全球及欧洲吊扇市场规模数据<br>
+    • 《塔扇 & 移动空调 · 全欧洲销量预测 2026-2027》— 德国塔扇基准销量与热夏增长假设<br>
+    • 4 家咖啡机供应商报价单（广东大正 DZ20260702_959 / 江门麦豪 / 深圳仰山 2025-09-09 / 中山美科美）<br>
+    • 参考汇率（ECB 2026-07-03）：USD 1 ≈ CNY 6.78 &nbsp;|&nbsp; EUR 1 ≈ CNY 7.76<br>
+    • 销量预测采用"德国风扇总盘子 × 吊扇灯渗透占比 × 热夏/产品创新系数"估算方式，适合作为订货决策参考，不应替代渠道订单和平台关键词数据。
+  </div>
+
+</div>
+</body>
+</html>

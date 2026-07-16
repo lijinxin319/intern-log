@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月9日</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --border: #e4e8f0;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #3D6F94;
+    --accent-soft: #E9F1F6;
+    --accent-dark: #2c5270;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #245c55;
+    --teal-soft: #dcebe7;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #3D6F94 0%, #2c5270 100%); border-radius: 14px; padding: 32px 30px; color: #fff; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 14px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin-bottom: 28px; align-items: stretch; }
+  .tl-item { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; position: relative; }
+  .tl-item:not(:last-child) { margin-right: 28px; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 16px; height: 2px; background: var(--text3); }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; right: -28px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid var(--text3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; z-index: 1; }
+  .tl-date { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+  .tl-title { font-size: 13.5px; font-weight: 600; color: var(--text); margin: 4px 0 6px; }
+  .tl-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; }
+  .tl-item.a { border-top: 3px solid var(--accent); }
+  .tl-item.b { border-top: 3px solid var(--orange); }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 16px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 600; }
+  .section-title.sty-orange { border-color: var(--orange); }
+  .section-title.sty-orange .num { background: var(--orange); }
+  .section-title.sty-teal { border-color: var(--teal); }
+  .section-title.sty-teal .num { background: var(--teal); }
+  .section-title.sty-purple { border-color: var(--purple); }
+  .section-title.sty-purple .num { background: var(--purple); }
+
+  /* Task label */
+  .task-label { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 14px; }
+  .task-label.orange { background: var(--orange-soft); border-color: var(--orange); color: var(--orange); }
+  .task-label.teal { background: var(--teal-soft); border-color: var(--teal); color: var(--teal); }
+  .task-label.purple { background: var(--purple-soft); border-color: var(--purple); color: var(--purple); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 14px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card.highlight-orange { border-color: var(--orange); background: var(--orange-soft); }
+  .card.highlight-teal { border-color: var(--teal); background: var(--teal-soft); }
+  .card.highlight-purple { border-color: var(--purple); background: var(--purple-soft); }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .card p { color: var(--text2); font-size: 13.5px; margin-bottom: 8px; }
+  .card ul { padding-left: 18px; color: var(--text2); font-size: 13.5px; }
+  .card ul li { margin-bottom: 5px; }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .score-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .score-num.orange { color: var(--orange); }
+  .score-num.green { color: var(--green); }
+  .score-num.red { color: var(--red); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .score-desc { font-size: 11.5px; color: var(--text2); margin-top: 5px; line-height: 1.4; }
+
+  /* Tag pills */
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-blue { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-teal { background: var(--teal-soft); border: 1px solid var(--teal); color: var(--teal); }
+  .pill-red { background: var(--red-soft); border: 1px solid var(--red); color: var(--red); }
+  .pill-purple { background: var(--purple-soft); border: 1px solid var(--purple); color: var(--purple); }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #F0F3F8; color: var(--text2); font-weight: 500; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data tr:hover td { background: #FAFBFE; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); text-align: center; }
+  table.data .total-row td { font-weight: 600; background: #F0F3F8; color: var(--text); }
+  table.data .zero { color: var(--text3); }
+  table.data .hot { color: var(--orange); font-weight: 600; }
+
+  /* Insight box */
+  .insight { border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+  .insight.blue { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .insight.teal { background: var(--teal-soft); border: 1px solid var(--teal); }
+  .insight.orange { background: var(--orange-soft); border: 1px solid #E8A47F; }
+  .insight.green { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .insight.yellow { background: var(--yellow-soft); border: 1px solid #E6C070; }
+  .insight.purple { background: var(--purple-soft); border: 1px solid var(--purple); }
+  .insight.red { background: var(--red-soft); border: 1px solid var(--red); }
+  .insight h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .insight.blue h4 { color: var(--accent); }
+  .insight.teal h4 { color: var(--teal); }
+  .insight.orange h4 { color: var(--orange); }
+  .insight.green h4 { color: var(--green); }
+  .insight.yellow h4 { color: var(--yellow); }
+  .insight.purple h4 { color: var(--purple); }
+  .insight.red h4 { color: var(--red); }
+  .insight p { font-size: 13px; color: var(--text); }
+
+  /* Reflection list */
+  .reflect-list { list-style: none; }
+  .reflect-list li { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .reflect-list li:last-child { border-bottom: none; }
+  .reflect-num { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .reflect-list .rl-title { font-weight: 600; color: var(--text); font-size: 13.5px; margin-bottom: 3px; }
+  .reflect-list .rl-desc { font-size: 12.5px; color: var(--text2); }
+
+  /* Highlight text */
+  .hl { color: var(--accent); font-weight: 600; }
+  .hl-orange { color: var(--orange); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
+  .hl-teal { color: var(--teal); font-weight: 600; }
+  .hl-red { color: var(--red); font-weight: 600; }
+  .hl-purple { color: var(--purple); font-weight: 600; }
+
+  /* Bar chart */
+  .bar-chart { margin: 10px 0; }
+  .bar-row { margin: 8px 0; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px; }
+  .bar-label .bl-name { font-weight: 600; color: var(--text); }
+  .bar-label .bl-val { color: var(--text2); }
+  .bar-track { height: 18px; background: #EDF2F7; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .bar-fill.blue { background: linear-gradient(90deg, #3D6F94, #5a8bb0); }
+  .bar-fill.orange { background: linear-gradient(90deg, #C56443, #d97a5a); }
+  .bar-fill.green { background: linear-gradient(90deg, #2d7a4f, #4a9a6c); }
+  .bar-fill.yellow { background: linear-gradient(90deg, #C68E31, #daa649); }
+  .bar-fill.teal { background: linear-gradient(90deg, #245c55, #3a7a72); }
+  .bar-fill.purple { background: linear-gradient(90deg, #6b5b95, #8576b0); }
+  .bar-fill.red { background: linear-gradient(90deg, #c0392b, #d85548); }
+
+  /* Brand card */
+  .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0; }
+  .brand-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; position: relative; }
+  .brand-card.primary { border-color: var(--accent); border-width: 2px; background: var(--accent-soft); }
+  .brand-card .brand-name { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .brand-card.primary .brand-name { color: var(--accent); }
+  .brand-card .brand-cn { font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+  .brand-card .brand-tag { display: inline-block; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; margin-bottom: 8px; }
+  .brand-card .brand-tag.t-blue { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+  .brand-card .brand-tag.t-orange { background: var(--orange-soft); color: var(--orange); border: 1px solid var(--orange); }
+  .brand-card .brand-tag.t-purple { background: var(--purple-soft); color: var(--purple); border: 1px solid var(--purple); }
+  .brand-card .brand-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .brand-card .brand-stars { font-size: 13px; color: var(--yellow); margin-top: 6px; }
+
+  /* Logo grid */
+  .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 12px 0; }
+  .logo-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+  .logo-item .li-num { font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+  .logo-item .li-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .logo-item .li-tag { font-size: 11px; color: var(--text3); }
+
+  /* Process flow */
+  .flow-row { display: flex; align-items: stretch; gap: 0; margin: 12px 0; flex-wrap: wrap; }
+  .flow-step { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; position: relative; }
+  .flow-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 16px; z-index: 1; }
+  .flow-step .fs-num { font-size: 11px; color: var(--text3); font-weight: 600; }
+  .flow-step .fs-title { font-size: 12.5px; font-weight: 600; color: var(--text); margin: 2px 0; }
+  .flow-step .fs-desc { font-size: 11px; color: var(--text2); }
+
+  .footer-note { font-size: 11.5px; color: var(--text3); margin-top: 18px; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.8; }
+
+  @media (max-width: 760px) {
+    .timeline { flex-direction: column; gap: 12px; }
+    .tl-item:not(:last-child) { margin-right: 0; margin-bottom: 12px; }
+    .tl-item:not(:last-child)::after, .tl-item:not(:last-child)::before { display: none; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .brand-grid { grid-template-columns: 1fr; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .flow-row { flex-direction: column; }
+    .flow-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -14px; transform: translateX(50%); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月9日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">塔扇各平台销售情况统计与分析 · TikTok项目组宠物品牌 Osvello 生成与注册评估</div>
+    <div class="tags">
+      <span class="tag">📊 销售统计</span>
+      <span class="tag">🐾 Osvello 品牌</span>
+      <span class="tag">Trademark 注册评估</span>
+    </div>
+  </div>
+
+  <!-- 任务概览时间线 -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日任务概览</div>
+    <div class="timeline">
+      <div class="tl-item a">
+        <div class="tl-date">Task A · 数据统计</div>
+        <div class="tl-title">塔扇各平台销售情况统计</div>
+        <div class="tl-desc">5款SKU × 6个平台<br>7月7日-7月9日每日销量跟踪<br>库存占用率与平台分布分析</div>
+      </div>
+      <div class="tl-item b">
+        <div class="tl-date">Task B · 品牌生成</div>
+        <div class="tl-title">TikTok项目组宠物品牌 Osvello</div>
+        <div class="tl-desc">注册可行度评估<br>全球商标占用与销售体量调研<br>注册风险矩阵与实操建议</div>
+      </div>
+    </div>
+    <div class="card">
+      <p>今日工作围绕<span class="hl">两条主线</span>展开：一是负责统计赫墨塔扇产品在 OTTO、BOL、邓一鸣、TikTok、深圳、杭州 六个渠道的每日销售数据，跟踪 5 款 SKU 的库存消耗与销量走势；二是配合 TikTok 项目组，完成宠物家具品牌 <strong>Osvello</strong> 的全球商标注册可行度评估与销售体量调研。此外还完成了 Miravia 西班牙平台塔扇与空调销售调研，为塔扇选品提供市场参考。</p>
+    </div>
+  </div>
+
+  <!-- ============ Task A: 塔扇销售统计 ============ -->
+  <div class="section">
+    <div class="task-label">📊 Task A · 塔扇各平台销售情况统计</div>
+    <div class="section-title"><span class="num">2</span> 塔扇销售数据总览</div>
+
+    <!-- 核心指标 -->
+    <div class="score-grid" style="margin-bottom: 16px;">
+      <div class="score-card">
+        <div class="score-num">1,948</div>
+        <div class="score-label">总库存（台）</div>
+        <div class="score-desc">5款SKU合计备货量</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">421</div>
+        <div class="score-label">累计销量（台）</div>
+        <div class="score-desc">7/7-7/9 三日合计</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">1,527</div>
+        <div class="score-label">剩余库存（台）</div>
+        <div class="score-desc">截至7月9日</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num red">21.6%</div>
+        <div class="score-label">库存消耗率</div>
+        <div class="score-desc">累计销量 / 总库存</div>
+      </div>
+    </div>
+
+    <div class="card highlight">
+      <h3>核心发现：TFL06EB 为绝对主力，OTTO+BOL 贡献超 96% 销量</h3>
+      <p>三日累计销售 <span class="hl-orange">421 台</span>，其中 TFL06EB-白色 单品售出 <span class="hl-orange">248 台</span>，占总销量 <strong>58.9%</strong>。渠道方面，OTTO 平台售出 299 台（71.0%），BOL 平台售出 109 台（25.9%），两者合计占比 <strong>96.9%</strong>。TikTok、深圳、杭州 三个渠道三日累计销量为零，目前未产生动销。</p>
+    </div>
+  </div>
+
+  <!-- 按产品汇总 -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 按产品汇总：5款SKU销售与库存</div>
+    <div class="card">
+      <h3>各SKU累计销量与库存占用率</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>产品型号</th>
+              <th>总库存</th>
+              <th>累计销量</th>
+              <th>剩余库存</th>
+              <th>库存消耗率</th>
+              <th>销量占比</th>
+              <th>动销评价</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TFH06ET-白色</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">22</td>
+              <td class="num-cell">328</td>
+              <td><span class="pill pill-blue">6.3%</span></td>
+              <td>5.2%</td>
+              <td><span class="pill pill-yellow">动销偏弱</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFH08ET-白色</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">67</td>
+              <td class="num-cell">283</td>
+              <td><span class="pill pill-blue">19.1%</span></td>
+              <td>15.9%</td>
+              <td><span class="pill pill-teal">稳步动销</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFL06EB-白色</strong></td>
+              <td class="num-cell">600</td>
+              <td class="num-cell hot">248</td>
+              <td class="num-cell">352</td>
+              <td><span class="pill pill-red">41.3%</span></td>
+              <td><strong>58.9%</strong></td>
+              <td><span class="pill pill-red">主力爆款</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFL06ET-白色</strong></td>
+              <td class="num-cell">303</td>
+              <td class="num-cell">42</td>
+              <td class="num-cell">261</td>
+              <td><span class="pill pill-blue">13.9%</span></td>
+              <td>10.0%</td>
+              <td><span class="pill pill-yellow">动销偏弱</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFL08ET-白色</strong></td>
+              <td class="num-cell">345</td>
+              <td class="num-cell">42</td>
+              <td class="num-cell">303</td>
+              <td><span class="pill pill-blue">12.2%</span></td>
+              <td>10.0%</td>
+              <td><span class="pill pill-yellow">动销偏弱</span></td>
+            </tr>
+            <tr class="total-row">
+              <td>合计</td>
+              <td class="num-cell">1,948</td>
+              <td class="num-cell">421</td>
+              <td class="num-cell">1,527</td>
+              <td><strong>21.6%</strong></td>
+              <td>100%</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 库存消耗率柱状图 -->
+    <div class="card">
+      <h3>各SKU库存消耗率对比</h3>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label"><span class="bl-name">TFL06EB-白色</span><span class="bl-val">41.3% · 售248台</span></div>
+          <div class="bar-track"><div class="bar-fill red" style="width: 41.3%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span class="bl-name">TFH08ET-白色</span><span class="bl-val">19.1% · 售67台</span></div>
+          <div class="bar-track"><div class="bar-fill orange" style="width: 19.1%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span class="bl-name">TFL06ET-白色</span><span class="bl-val">13.9% · 售42台</span></div>
+          <div class="bar-track"><div class="bar-fill yellow" style="width: 13.9%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span class="bl-name">TFL08ET-白色</span><span class="bl-val">12.2% · 售42台</span></div>
+          <div class="bar-track"><div class="bar-fill yellow" style="width: 12.2%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span class="bl-name">TFH06ET-白色</span><span class="bl-val">6.3% · 售22台</span></div>
+          <div class="bar-track"><div class="bar-fill blue" style="width: 6.3%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task B: Osvello 宠物品牌 ============ -->
+  <div class="section">
+    <div class="task-label orange">🐾 Task B · TikTok项目组宠物品牌 Osvello</div>
+    <div class="section-title sty-orange"><span class="num">4</span> Osvello 品牌注册可行度评估</div>
+
+    <div class="score-grid" style="margin-bottom: 16px;">
+      <div class="score-card">
+        <div class="score-num green">75-85%</div>
+        <div class="score-label">综合可行度</div>
+        <div class="score-desc">比 Norvia、Lunavo 干净很多</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">未见</div>
+        <div class="score-label">同名强占用</div>
+        <div class="score-desc">无成熟宠物/家具品牌</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">弱</div>
+        <div class="score-label">近似词风险</div>
+        <div class="score-desc">Oscello / Ohvello 需复核</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">第20类</div>
+        <div class="score-label">最佳注册类目</div>
+        <div class="score-desc">宠物床/沙发/猫爬架</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>全球商标占用线索初查结果</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>检索维度</th>
+              <th>结果</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>品牌占用</strong></td>
+              <td><span class="pill pill-green">未见强占用</span></td>
+              <td>未发现 Osvello 本身的成熟商业品牌、独立站或宠物家具同类品牌</td>
+            </tr>
+            <tr>
+              <td><strong>美国 USPTO</strong></td>
+              <td><span class="pill pill-green">未发现</span></td>
+              <td>公开搜索未发现 Osvello 的 USPTO.report 或 Justia Trademarks 明确记录</td>
+            </tr>
+            <tr>
+              <td><strong>欧盟/WIPO</strong></td>
+              <td><span class="pill pill-green">未发现</span></td>
+              <td>公开搜索未发现 EUIPO 或 WIPO Brand Database 明确结果</td>
+            </tr>
+            <tr>
+              <td><strong>销售体量</strong></td>
+              <td><span class="pill pill-green">无可验证销售</span></td>
+              <td>未见 Osvello 商品销售页面，近一年 GMV 无法估算，商业使用信号接近空白</td>
+            </tr>
+            <tr>
+              <td><strong>近似词 Oscello</strong></td>
+              <td><span class="pill pill-yellow">弱相关</span></td>
+              <td>Oscello Egypt Export 做石材出口，非宠物/家具类目，距离较远</td>
+            </tr>
+            <tr>
+              <td><strong>近似词 Ohvello</strong></td>
+              <td><span class="pill pill-yellow">弱相关</span></td>
+              <td>OHVELLO 销售陶瓷地址牌等家居小物，小型电商，非同品类</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>宠物类目注册风险矩阵</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>计划产品</th>
+              <th>类别</th>
+              <th>风险等级</th>
+              <th>建议</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>宠物床、宠物沙发、猫爬架、宠物柜</td>
+              <td>第20类</td>
+              <td><span class="pill pill-green">低到中低</span></td>
+              <td><strong>优先申请</strong>，重点做美/欧/英/中官方检索</td>
+            </tr>
+            <tr>
+              <td>宠物碗、喂食器、饮水器、梳理工具</td>
+              <td>第21类</td>
+              <td><span class="pill pill-green">中低</span></td>
+              <td>可作为第二梯队申请</td>
+            </tr>
+            <tr>
+              <td>宠物玩具</td>
+              <td>第28类</td>
+              <td><span class="pill pill-green">较低</span></td>
+              <td>可同步申请，适合做品牌副线</td>
+            </tr>
+            <tr>
+              <td>牵引绳、项圈、宠物包</td>
+              <td>第18类</td>
+              <td><span class="pill pill-green">中低</span></td>
+              <td>如未来扩品，可纳入防御注册</td>
+            </tr>
+            <tr>
+              <td>智能喂食器、电动饮水机</td>
+              <td>第9/11类</td>
+              <td><span class="pill pill-yellow">中等</span></td>
+              <td>先做官方近似检索，再决定是否申请</td>
+            </tr>
+            <tr>
+              <td>宠物洗护、宠物食品、营养品</td>
+              <td>第3/5/31类</td>
+              <td><span class="pill pill-yellow">中等</span></td>
+              <td>不建议作为首发类目</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight green">
+      <h4>实操建议</h4>
+      <p>让商标代理优先查并提交 <strong>Osvello 标准字商标</strong>，重点国家建议先做<strong>美国、欧盟、英国、中国</strong>；重点类别先做<strong>第20类</strong>（宠物床/沙发/猫爬架/宠物柜），并视预算补第21、28、35类。不建议先大批量印包装、开模或铺货——更稳的顺序是先提交商标申请，拿到受理号后做小规模品牌物料，等通过初审或公告期风险降低后再扩大投入。</p>
+    </div>
+  </div>
+
+  <!-- Miravia 市场调研 -->
+  <div class="section">
+    <div class="task-label teal">🔍 支撑工作 · Miravia 西班牙市场调研</div>
+    <div class="section-title sty-teal"><span class="num">5</span> Miravia 塔扇与空调销售调研</div>
+
+    <div class="card highlight-teal">
+      <h3>调研目的：为塔扇选品提供西班牙市场参考</h3>
+      <p>基于 Miravia Spain 前台类目页和商品页公开信息，对塔扇和空调两个品类进行销售可见度、价格带、竞争强度和进入机会的系统调研。采集了塔扇 10 款、空调冷风 10 款样本。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 16px;">
+      <div class="score-card">
+        <div class="score-num">36-220€</div>
+        <div class="score-label">塔扇价格带</div>
+        <div class="score-desc">样本均价 94.45€</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">59-587€</div>
+        <div class="score-label">空调价格带</div>
+        <div class="score-desc">样本均价 213.71€</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">7/20</div>
+        <div class="score-label">销量可见度</div>
+        <div class="score-desc">仅少数商品前台显示 sold</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">63</div>
+        <div class="score-label">可见销量合计</div>
+        <div class="score-desc">公开下限，非后台真实销量</div>
+      </div>
+    </div>
+
+    <div class="insight teal">
+      <h4>核心结论</h4>
+      <p><strong>1. 塔扇需求存在但非爆量品类。</strong>低价基础款（36-60€）更容易出现公开销量，超过100€的品牌款前台销量不透明。建议卖家切 <span class="hl-teal">40-80€基础遥控款</span>。</p>
+      <p style="margin-top: 8px;"><strong>2. 空调类目混放严重。</strong>蒸发式冷风机和压缩机制冷移动空调被混在一起，59-89€的冷风机成交信号最强，但不是真正的移动空调。建议做 <span class="hl-teal">60-90€冷风机或199-249€入门移动空调</span>。</p>
+      <p style="margin-top: 8px;"><strong>3. Miravia 前台数据透明度偏低。</strong>不能只看推荐排序判断热销，更可靠的判断方式是推荐位 + 是否显示 vendidos + 价格带 + 品牌/功能组合。</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <strong>数据来源：</strong>塔扇每日各平台销售情况统计表（WPS云盘）、Osvello 品牌系列报告（4份HTML）、Miravia 销售调研报告（HTML）。<br>
+    <strong>报告日期：</strong>2026年7月9日。<strong>报告人：</strong>实习生。<br>
+    <strong>备注：</strong>商标注册可行度评估为公开信息初查和商业风险判断，不构成法律意见；正式注册请以各国官方商标局数据库及律师近似检索为准。Miravia 销量数据仅使用前台公开可见值，不代表后台真实成交量。
+  </div>
+
+</div>
+</body>
+</html>

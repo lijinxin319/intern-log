@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月14日</title>
+<style>
+  :root {
+    --bg: #f4f7f3;
+    --card: #ffffff;
+    --border: #dde6df;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #1e7a4c;
+    --accent-soft: #eaf5ed;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #245c55;
+    --teal-soft: #dcebe7;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+    --blue: #3D6F94;
+    --blue-soft: #E9F1F6;
+    --navy: #1a3c6e;
+    --navy-soft: #eaf3ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #0d2116 0%, #1f5b3a 58%, #4a8c5e 100%); border-radius: 14px; padding: 28px 30px; color: #fff; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 6px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 12px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin-bottom: 14px; align-items: stretch; }
+  .tl-item { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px; position: relative; }
+  .tl-item:not(:last-child) { margin-right: 28px; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 16px; height: 2px; background: var(--text3); }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; right: -28px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid var(--text3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; z-index: 1; }
+  .tl-date { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+  .tl-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 3px 0 5px; }
+  .tl-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; }
+  .tl-item.a { border-top: 3px solid var(--navy); }
+  .tl-item.b { border-top: 3px solid var(--accent); }
+  .tl-item.c { border-top: 3px solid var(--orange); }
+  .tl-item.d { border-top: 3px solid var(--purple); }
+
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 15px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; }
+  .section-title.sty-navy { border-color: var(--navy); }
+  .section-title.sty-navy .num { background: var(--navy); }
+  .section-title.sty-orange { border-color: var(--orange); }
+  .section-title.sty-orange .num { background: var(--orange); }
+  .section-title.sty-purple { border-color: var(--purple); }
+  .section-title.sty-purple .num { background: var(--purple); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card.highlight-navy { border-color: var(--navy); background: var(--navy-soft); }
+  .card p { color: var(--text2); font-size: 13px; margin-bottom: 6px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .score-num { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .score-num.orange { color: var(--orange); }
+  .score-num.green { color: var(--green); }
+  .score-num.red { color: var(--red); }
+  .score-num.blue { color: var(--blue); }
+  .score-num.purple { color: var(--purple); }
+  .score-num.navy { color: var(--navy); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .score-desc { font-size: 11px; color: var(--text2); margin-top: 4px; line-height: 1.3; }
+
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-red { background: var(--red-soft); border: 1px solid var(--red); color: var(--red); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-blue { background: var(--blue-soft); border: 1px solid var(--blue); color: var(--blue); }
+  .pill-purple { background: var(--purple-soft); border: 1px solid var(--purple); color: var(--purple); }
+  .pill-navy { background: var(--navy-soft); border: 1px solid var(--navy); color: var(--navy); }
+
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #edf4ef; color: #1e3b2b; font-weight: 500; padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); text-align: center; }
+  table.data .navy-cell { font-weight: 600; color: var(--navy); text-align: center; }
+  table.data .total-row td { font-weight: 600; background: #edf4ef; color: var(--text); }
+  table.data .hot { color: var(--orange); font-weight: 600; }
+
+  span.hl { color: var(--accent); font-weight: 600; }
+  span.hl-navy { color: var(--navy); font-weight: 600; }
+  span.hl-orange { color: var(--orange); font-weight: 600; }
+  span.hl-red { color: var(--red); font-weight: 600; }
+  span.hl-purple { color: var(--purple); font-weight: 600; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .footer-note { font-size: 11px; color: var(--text3); margin-top: 16px; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.7; }
+
+  @media (max-width: 760px) {
+    .timeline { flex-direction: column; gap: 10px; }
+    .tl-item:not(:last-child) { margin-right: 0; margin-bottom: 10px; }
+    .tl-item:not(:last-child)::after, .tl-item:not(:last-child)::before { display: none; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .row2, .row3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月14日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">Oukitel 储能四平台价格监测 · ASD 欧洲户外产品可行性调研 · ASD 款式清单梳理 · Mesliese 三品联合8平台进入</div>
+    <div class="tags">
+      <span class="tag">🔋 储能价格</span>
+      <span class="tag">🏕 户外调研</span>
+      <span class="tag">📋 款式清单</span>
+      <span class="tag">🏪 8平台进入</span>
+    </div>
+  </div>
+
+  <!-- ============ 任务概览 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日任务概览</div>
+    <div class="timeline">
+      <div class="tl-item a">
+        <div class="tl-date">Task A · 储能价格监测</div>
+        <div class="tl-title">Oukitel 储能四平台价格对比</div>
+        <div class="tl-desc">6款便携储能产品在 AE/Allegro/Amazon/官方EU 四平台最低价监测，毛利与独占窗口分析</div>
+      </div>
+      <div class="tl-item b">
+        <div class="tl-date">Task B · 户外可行性调研</div>
+        <div class="tl-title">ASD 欧洲户外产品市场调研</div>
+        <div class="tl-desc">VOOMA户外烹饪产品欧洲市场可行性评估：需求、合规、渠道与90天验证计划</div>
+      </div>
+      <div class="tl-item c">
+        <div class="tl-date">Task C · 款式清单梳理</div>
+        <div class="tl-title">ASD 泛欧款式清单与产品图</div>
+        <div class="tl-desc">14个型号+1系列产品图裁剪、参数核实、定位建议与定价区间整理</div>
+      </div>
+      <div class="tl-item d">
+        <div class="tl-date">Task D · 8平台进入策略</div>
+        <div class="tl-title">Mesliese 三品联合欧洲8平台进入</div>
+        <div class="tl-desc">2款真空封口机+1款原汁机在8个非Amazon渠道的定价与进入优先级分析</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task A: Oukitel 储能价格监测 ============ -->
+  <div class="section">
+    <div class="section-title sty-navy"><span class="num">2</span> Oukitel 储能四平台价格监测</div>
+
+    <div class="card highlight-navy">
+      <p>德行跨境与 <strong>Oukitel</strong> 正式启动欧洲储能产品战略合作，Oukitel 深耕欧洲12年，本地仓和本地化服务体系已完备。本次价格监测覆盖 <span class="hl-navy">6款便携储能SKU</span> 在 AliExpress DE、Allegro PL、Amazon DE、官方 EU 站四个渠道的实时最低价。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num navy">6</div>
+        <div class="score-label">SKU数量</div>
+        <div class="score-desc">800W–4000W全覆盖</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">€179</div>
+        <div class="score-label">最低价(P800E)</div>
+        <div class="score-desc">AliExpress DE</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">21–50%</div>
+        <div class="score-label">毛利区间</div>
+        <div class="score-desc">最低价平台仍有毛利</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num red">2</div>
+        <div class="score-label">独占窗口</div>
+        <div class="score-desc">P5000Pro Allegro缺货 / P2400E Amazon空白</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>型号</th>
+              <th>功率/容量</th>
+              <th>定位</th>
+              <th>AE最低价</th>
+              <th>Allegro</th>
+              <th>Amazon</th>
+              <th>官方EU</th>
+              <th>出货价</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>P800E</strong></td>
+              <td>800W / 512Wh</td>
+              <td>入门便携</td>
+              <td class="navy-cell">€179.72</td>
+              <td class="num-cell">€232</td>
+              <td class="num-cell">€241</td>
+              <td class="num-cell">€259</td>
+              <td>€149</td>
+            </tr>
+            <tr>
+              <td><strong>P1000E Plus</strong></td>
+              <td>1,800W / 1,024Wh</td>
+              <td>中端主力</td>
+              <td class="navy-cell">€372.27</td>
+              <td class="num-cell">€393</td>
+              <td class="num-cell">€463</td>
+              <td class="num-cell">€449</td>
+              <td>€258</td>
+            </tr>
+            <tr style="background:#eaf3ff;">
+              <td><strong>⭐ P2001E Plus</strong></td>
+              <td>2,400W / 2,048Wh</td>
+              <td>核心爆款</td>
+              <td class="navy-cell">€536.54</td>
+              <td class="num-cell">€674</td>
+              <td class="num-cell">€806</td>
+              <td class="num-cell">€759</td>
+              <td>€428</td>
+            </tr>
+            <tr>
+              <td><strong>P2001E Pro</strong></td>
+              <td>3,200W / 2,048Wh</td>
+              <td>高性能款</td>
+              <td class="navy-cell">€591.73</td>
+              <td class="num-cell">€767</td>
+              <td class="num-cell">€771</td>
+              <td class="num-cell">€899</td>
+              <td>€456</td>
+            </tr>
+            <tr>
+              <td><strong>P2400E</strong></td>
+              <td>2,400W / 2,048Wh</td>
+              <td>户外款</td>
+              <td class="navy-cell">€601.94</td>
+              <td class="num-cell">€697</td>
+              <td style="color:var(--text3)">未找到</td>
+              <td style="color:var(--red);font-weight:700">缺货</td>
+              <td>€418</td>
+            </tr>
+            <tr>
+              <td><strong>P5000 Pro</strong></td>
+              <td>4,000W / 5,120Wh</td>
+              <td>旗舰全屋</td>
+              <td class="navy-cell">€1,597</td>
+              <td style="color:var(--red);font-weight:700">缺货</td>
+              <td class="num-cell">€1,713</td>
+              <td class="num-cell">€1,999</td>
+              <td>€1,189</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        <span class="hl-navy">AliExpress 是全渠道最低价</span>：6款SKU在AE均低于其他平台，P2001E Plus 仅€537，比Allegro低20%。Amazon DE由两个中国小卖家垄断（广州小兵+香港崛起），德行跨境凭品牌授权+德国仓入驻可快速取代。<span class="hl-red">P5000 Pro Allegro缺货、P2400E Amazon空白</span>为独占窗口。所有SKU在最低价平台仍有<span class="hl">21%–50%毛利</span>。Oukitel下周将签发各平台价格管控方案，保护长期合作客户。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ Task B: ASD 欧洲户外产品可行性调研 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> ASD 欧洲户外产品市场可行性调研</div>
+
+    <div class="card highlight">
+      <p>以 <strong>VOOMA 2025 户外产品目录</strong> 为样本，聚焦便携燃气炉、户外锅具、折叠烤炉、露营风扇与营灯，评估欧洲市场需求、产品竞争力、法规门槛与进入路径。核心结论：<span class="hl">可进入，但必须"先合规、后放量"</span>。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num">413M</div>
+        <div class="score-label">EU露营住宿夜数</div>
+        <div class="score-desc">2025年数据</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">154M</div>
+        <div class="score-label">法国（优先市场）</div>
+        <div class="score-desc">家庭露营首选</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">72</div>
+        <div class="score-label">可行性评分</div>
+        <div class="score-desc">有条件进入</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num red">高</div>
+        <div class="score-label">燃气合规风险</div>
+        <div class="score-desc">GAR认证必须前置</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>核心发现</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>市场需求</strong></td><td>自驾露营、家庭露营与房车场景最匹配；折叠体积、双炉烹饪、收纳一体化为核心卖点</td></tr>
+            <tr><td><strong>合规门槛</strong></td><td>便携燃气炉需 EU 2016/426 (GAR) 认证 + 公告机构参与；锅具需 EC 1935/2004 食品接触声明；风扇/营灯需 GPSR + EMC/LVD/RoHS</td></tr>
+            <tr><td><strong>定价建议</strong></td><td>双头折叠炉 €119–179 · 分体卡式炉 €59–89 · 折叠烤炉 €69–129 · 锅具配件 €29–79 · 营灯 €19–39</td></tr>
+            <tr><td><strong>策略</strong></td><td>低风险配件先行 + 燃气主品认证验证双轨；不建议与超轻徒步炉正面竞争</td></tr>
+            <tr><td><strong>验证计划</strong></td><td>90天分5阶段：法规差距分析 → 样机实测 → 60人消费者验证 → 合规检测 → 项目决策</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        目录产品信息缺口需补齐：<span class="hl-orange">净重、展开/收纳尺寸、额定热负荷、耗气量、气源类别与压力、点火循环、抗风测试</span>等参数缺失将显著增加退货风险。燃气安全认证是项目前置里程碑，不是上市后补件。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ Task C: ASD 款式清单梳理 ============ -->
+  <div class="section">
+    <div class="section-title sty-orange"><span class="num">4</span> ASD 泛欧款式清单与产品图梳理</div>
+
+    <div class="score-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num orange">3</div>
+        <div class="score-label">P0 主推爆品</div>
+        <div class="score-desc">Cooking Machine / IH Rice Cooker / Steam Oven</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">2</div>
+        <div class="score-label">补充潜力款</div>
+        <div class="score-desc">9合1电压力锅 / 钛壶电水壶</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num purple">14+1</div>
+        <div class="score-label">可推进单品合计</div>
+        <div class="score-desc">覆盖6条产品线</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>产品线</th>
+              <th>代表型号</th>
+              <th>定位</th>
+              <th>建议零售(€)</th>
+              <th>FOB(USD)</th>
+              <th>毛利</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fdf0eb;">
+              <td><strong>Easy Life Cooking Machine</strong></td>
+              <td>AM-L50E806</td>
+              <td>Thermomix TM7平替 + Air Fryer</td>
+              <td>269–349</td>
+              <td>$95–120</td>
+              <td><span class="pill pill-green">~40–50%</span></td>
+            </tr>
+            <tr style="background:#fdf0eb;">
+              <td><strong>IH Titanium Rice Cooker</strong></td>
+              <td>AR-F40I5001</td>
+              <td>纯钛0涂层+IH，€150–250无竞品</td>
+              <td>149–199</td>
+              <td>$55–70</td>
+              <td><span class="pill pill-green">~35–45%</span></td>
+            </tr>
+            <tr style="background:#fdf0eb;">
+              <td><strong>Steam AirFry Oven</strong></td>
+              <td>AO-F20Z702</td>
+              <td>Ninja Combi中国性价比替代</td>
+              <td>119–169</td>
+              <td>$40–55</td>
+              <td><span class="pill pill-green">~35–45%</span></td>
+            </tr>
+            <tr>
+              <td><strong>9合1电压力锅</strong></td>
+              <td>AP-Y60E1005</td>
+              <td>多功能集合，入门偏上</td>
+              <td>89–129</td>
+              <td>$30–40</td>
+              <td><span class="pill pill-green">~35–45%</span></td>
+            </tr>
+            <tr>
+              <td><strong>钛壶电水壶</strong></td>
+              <td>AW-S16Z307</td>
+              <td>6段温控 + 纯钛壶体</td>
+              <td>45–65</td>
+              <td>$12–18</td>
+              <td><span class="pill pill-green">~40–50%</span></td>
+            </tr>
+            <tr>
+              <td>超薄电磁炉系列</td>
+              <td>AI-F21C101 等3款</td>
+              <td>桌面便携加热</td>
+              <td>49–79</td>
+              <td>$16–22</td>
+              <td><span class="pill pill-green">~35–45%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        P0爆品三大核心竞争力：Cooking Machine 集成Air Fryer为TM7缺失功能；IH Rice Cooker 纯钛0涂层精准命中<span class="hl-orange">PFAS健康焦虑</span>；Steam Oven 契合地中海/德式蒸烹饪文化。每款产品图均从2026 Catalogue独立裁剪核实，不含通用图库替代。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ Task D: Mesliese 三品联合8平台进入 ============ -->
+  <div class="section">
+    <div class="section-title sty-purple"><span class="num">5</span> Mesliese 三品联合欧洲8平台进入策略</div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num purple">3 SKU</div>
+        <div class="score-label">联合分析</div>
+        <div class="score-desc">2真空封口机+1原汁机</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">234</div>
+        <div class="score-label">Amazon评价</div>
+        <div class="score-desc">信任背书可复用</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">2</div>
+        <div class="score-label">首发渠道</div>
+        <div class="score-desc">Kaufland + bol.com</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">220台</div>
+        <div class="score-label">Phase1铺货</div>
+        <div class="score-desc">月销目标40–100台</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>产品</th>
+              <th>Amazon参考价</th>
+              <th>Kaufland</th>
+              <th>bol.com</th>
+              <th>Cdiscount</th>
+              <th>OTTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#efeaf5;">
+              <td>MS-VS6120-DE</td>
+              <td>真空封口机(灰)</td>
+              <td>€100–110</td>
+              <td>€119–129</td>
+              <td>€124–129</td>
+              <td>€129</td>
+              <td>€139</td>
+            </tr>
+            <tr style="background:#efeaf5;">
+              <td>MSVS8009DE</td>
+              <td>真空封口机(银)</td>
+              <td>€100–110</td>
+              <td>€115–124</td>
+              <td>€119–129</td>
+              <td>€124</td>
+              <td>€134</td>
+            </tr>
+            <tr style="background:#efeaf5;">
+              <td>SJ054C</td>
+              <td>慢速原汁机</td>
+              <td>€120–150</td>
+              <td>€159–179</td>
+              <td>€169–179</td>
+              <td>€159</td>
+              <td>€179</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        <span class="hl-purple">核心定价原则：非Amazon渠道售价不得低于Amazon.de当前价</span>。灰款走科技溢价路线(+€10–15 vs Amazon)，银款走经典性价比(+€5–10)，覆盖不同审美偏好。8平台优先级：Kaufland ★★★★★ → bol ★★★★★ → Cdiscount ★★★★ → OTTO ★★★ → MediaMarkt ★★★ → Fnac-Darty ★★★；ManoMano与TikTok Shop不建议作为主渠道。
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <strong>数据来源：</strong>Oukitel 四平台最低价对比报告(2026-07-14)、ASD/VOOMA 欧洲户外产品市场可行性调研报告、ASD 泛欧款式清单与产品图、Mesliese 三品联合欧洲8平台进入报告、Oukitel × 德行跨境战略合作告知函、OUKITEL 德国 TikTok 全系梯度运营看板。<br>
+    <strong>报告日期：</strong>2026年7月14日 · <strong>报告人：</strong>实习生。
+  </div>
+
+</div>
+</body>
+</html>

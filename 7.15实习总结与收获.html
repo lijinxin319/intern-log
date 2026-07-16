@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月15日</title>
+<style>
+  :root {
+    --bg: #f4f7fa;
+    --card: #ffffff;
+    --border: #dde4ec;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #1a6b8a;
+    --accent-soft: #e8f3f8;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #1a6b6b;
+    --teal-soft: #dceeee;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+    --blue: #3D6F94;
+    --blue-soft: #E9F1F6;
+    --navy: #1a3c6e;
+    --navy-soft: #eaf3ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #0d1f2d 0%, #1a4a6b 55%, #2a7a9e 100%); border-radius: 14px; padding: 28px 30px; color: #fff; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 6px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 12px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin-bottom: 14px; align-items: stretch; }
+  .tl-item { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px; position: relative; }
+  .tl-item:not(:last-child) { margin-right: 28px; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 16px; height: 2px; background: var(--text3); }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; right: -28px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid var(--text3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; z-index: 1; }
+  .tl-date { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+  .tl-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 3px 0 5px; }
+  .tl-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; }
+  .tl-item.a { border-top: 3px solid var(--navy); }
+  .tl-item.b { border-top: 3px solid var(--accent); }
+  .tl-item.c { border-top: 3px solid var(--orange); }
+
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 15px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; }
+  .section-title.sty-navy { border-color: var(--navy); }
+  .section-title.sty-navy .num { background: var(--navy); }
+  .section-title.sty-orange { border-color: var(--orange); }
+  .section-title.sty-orange .num { background: var(--orange); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card.highlight-navy { border-color: var(--navy); background: var(--navy-soft); }
+  .card p { color: var(--text2); font-size: 13px; margin-bottom: 6px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .score-num { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .score-num.orange { color: var(--orange); }
+  .score-num.green { color: var(--green); }
+  .score-num.red { color: var(--red); }
+  .score-num.blue { color: var(--blue); }
+  .score-num.purple { color: var(--purple); }
+  .score-num.navy { color: var(--navy); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .score-desc { font-size: 11px; color: var(--text2); margin-top: 4px; line-height: 1.3; }
+
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-red { background: var(--red-soft); border: 1px solid var(--red); color: var(--red); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-blue { background: var(--blue-soft); border: 1px solid var(--blue); color: var(--blue); }
+  .pill-navy { background: var(--navy-soft); border: 1px solid var(--navy); color: var(--navy); }
+  .pill-accent { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #edf2f7; color: #1e3b4b; font-weight: 500; padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); text-align: center; }
+  table.data .navy-cell { font-weight: 600; color: var(--navy); text-align: center; }
+  table.data .total-row td { font-weight: 600; background: #edf2f7; color: var(--text); }
+  table.data .hot { color: var(--orange); font-weight: 600; }
+
+  span.hl { color: var(--accent); font-weight: 600; }
+  span.hl-navy { color: var(--navy); font-weight: 600; }
+  span.hl-orange { color: var(--orange); font-weight: 600; }
+  span.hl-red { color: var(--red); font-weight: 600; }
+  span.hl-green { color: var(--green); font-weight: 600; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .footer-note { font-size: 11px; color: var(--text3); margin-top: 16px; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.7; }
+
+  @media (max-width: 760px) {
+    .timeline { flex-direction: column; gap: 10px; }
+    .tl-item:not(:last-child) { margin-right: 0; margin-bottom: 10px; }
+    .tl-item:not(:last-child)::after, .tl-item:not(:last-child)::before { display: none; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .row2, .row3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月15日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">除湿机产品线规格表梳理 · 除湿机欧洲市场选型与销量预测 · 塔扇多渠道库存核对</div>
+    <div class="tags">
+      <span class="tag">💧 除湿机规格</span>
+      <span class="tag">📊 竞品分析</span>
+      <span class="tag">📦 库存核对</span>
+    </div>
+  </div>
+
+  <!-- ============ 任务概览 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日任务概览</div>
+    <div class="timeline">
+      <div class="tl-item a">
+        <div class="tl-date">Task A · 产品规格梳理</div>
+        <div class="tl-title">除湿机产品线完整规格表</div>
+        <div class="tl-desc">14个系列、6-70L全能力段除湿机参数整理，功能对比矩阵与差异化卖点提炼</div>
+      </div>
+      <div class="tl-item b">
+        <div class="tl-date">Task B · 欧洲市场分析</div>
+        <div class="tl-title">除湿机欧洲选型与销量预测</div>
+        <div class="tl-desc">7大竞品分析、法规门槛梳理、4差异化系列选型策略与三情景销量预测</div>
+      </div>
+      <div class="tl-item c">
+        <div class="tl-date">Task C · 库存核对</div>
+        <div class="tl-title">塔扇多渠道库存核对</div>
+        <div class="tl-desc">5款赫墨塔扇在8个渠道/仓位的库存、销量与发货数据三方核对</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task A: 除湿机产品线规格表 ============ -->
+  <div class="section">
+    <div class="section-title sty-navy"><span class="num">2</span> 除湿机产品线完整规格表梳理</div>
+
+    <div class="card highlight-navy">
+      <p>整理工厂除湿机全产品线规格表，覆盖 <span class="hl-navy">14个系列、50+型号</span>，按除湿能力分为小型段(6-16L)、中型段(16-25L)、大型段(30-70L)三档，并输出全产品线功能对比矩阵供选型参考。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num navy">14</div>
+        <div class="score-label">产品系列</div>
+        <div class="score-desc">6-70L/天全能力段</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num blue">50+</div>
+        <div class="score-label">SKU型号</div>
+        <div class="score-desc">小型10系列/中型4系列/大型3系列</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">200mm</div>
+        <div class="score-label">529X超薄深度</div>
+        <div class="score-desc">市场独家无竞品</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">≤36dB</div>
+        <div class="score-label">静音型号最低噪音</div>
+        <div class="score-desc">521X/512X/511X/527X</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>能力段</th>
+              <th>代表系列</th>
+              <th>除湿量</th>
+              <th>适用面积</th>
+              <th>核心差异化卖点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>小型段</strong></td>
+              <td>505X / 521X / 527X / 518X</td>
+              <td>6-16L/天</td>
+              <td>15-25m²</td>
+              <td>521X全能力段静音 · 527X触控隐藏屏 · 512X图书馆级≤36dB · 509X可选WiFi</td>
+            </tr>
+            <tr>
+              <td><strong>中型段</strong></td>
+              <td>529X / 525X / 516X / 506X</td>
+              <td>16-25L/天</td>
+              <td>20-35m²</td>
+              <td><span class="hl-orange">529X超薄200mm独家</span> · 525X童锁母婴安全6.5L大水箱 · 506X柱形触控</td>
+            </tr>
+            <tr>
+              <td><strong>大型段</strong></td>
+              <td>5190 / 526X</td>
+              <td>30-70L/天</td>
+              <td>30-60m²</td>
+              <td>526X 50-70L大容量 · 8.5L水箱 · 童锁+HEPA可选 · 地下室/商业用途</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        <span class="hl-navy">全产品线四大差异化优势：</span>①产品线最广(14系列覆盖6-70L，竞品最多3-4系列)；②529X超薄独家无直接竞品；③R290制冷剂全系可选，法规前瞻性最强；④3色湿度指示灯多系列标配，消费者喜爱的可视化功能。功能矩阵涵盖触控面板、HEPA/活性炭滤网、负离子UVC、童锁、WiFi等12项功能维度横向对比。
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ Task B: 欧洲市场选型与销量预测 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 除湿机欧洲市场选型与销量预测</div>
+
+    <div class="card highlight">
+      <p>基于产品线规格表，完成欧洲除湿机市场竞品分析与销量预测综合报告。涵盖7大竞品功能对比、8项法规准入要求、SWOT分析、三阶段选型策略与三情景销量预测模型。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num">€10.3亿</div>
+        <div class="score-label">2025年欧洲市场规模</div>
+        <div class="score-desc">CAGR 7%，2030年达€14.5亿</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">7</div>
+        <div class="score-label">主要竞品</div>
+        <div class="score-desc">Meaco/De'Longhi/ProBreeze等</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num navy">4+1</div>
+        <div class="score-label">首年聚焦系列</div>
+        <div class="score-desc">4差异化系列+527X试水</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">68,000</div>
+        <div class="score-label">基准首年销量(台)</div>
+        <div class="score-desc">出厂营收€545万</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>系列</th>
+              <th>核心定位</th>
+              <th>目标零售(€)</th>
+              <th>对标竞品</th>
+              <th>首年基准(台)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#eaf3ff;">
+              <td><strong>⭐ 529X</strong></td>
+              <td>超薄旗舰(200mm)</td>
+              <td>199-249</td>
+              <td>Meaco 20L(€302)，便宜20%+</td>
+              <td class="navy-cell">24,000</td>
+            </tr>
+            <tr style="background:#eaf3ff;">
+              <td><strong>⭐ 512X</strong></td>
+              <td>图书馆级静音(≤36dB)</td>
+              <td>129-159</td>
+              <td>Meaco 12L(€209)，便宜35%+</td>
+              <td class="navy-cell">20,500</td>
+            </tr>
+            <tr>
+              <td><strong>509X</strong></td>
+              <td>WiFi智能入门</td>
+              <td>149-169</td>
+              <td>ProBreeze Smart(€174)</td>
+              <td class="num-cell">10,000</td>
+            </tr>
+            <tr>
+              <td><strong>525X</strong></td>
+              <td>母婴安全(童锁+HEPA)</td>
+              <td>180-220</td>
+              <td>Comfee 16L(€175)，多童锁</td>
+              <td class="num-cell">6,500</td>
+            </tr>
+            <tr>
+              <td>527X</td>
+              <td>触控隐藏屏(德国试水)</td>
+              <td>159-179</td>
+              <td>自然流量测试</td>
+              <td class="num-cell">7,000</td>
+            </tr>
+            <tr class="total-row">
+              <td>首年合计</td>
+              <td colspan="3">定价中枢€129-249，避开€100以下白牌红海</td>
+              <td class="navy-cell">68,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        <span class="hl">法规关键趋势：</span>EU 2024/573 F-Gas法规要求R134a(GWP 1430)在3-5年内淘汰，<span class="hl-red">必须以R290为主推版本</span>。德国占欧洲市场25.4%为最大市场，英国约20%。首年优先进入德国/英国/法国三国(占首年销量60-70%)。<span class="hl-orange">必须补齐的功能：</span>洗衣干燥模式(欧洲室内晾衣文化)、睡眠模式(卧室刚需)——均为固件升级可实现。
+      </p>
+    </div>
+
+    <div class="row2">
+      <div class="card" style="margin-bottom:0;">
+        <p style="font-weight:600; color:var(--text); margin-bottom:6px;">三年滚动预测(基准情景)</p>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead>
+              <tr><th>年份</th><th>销量(台)</th><th>营收(€万)</th><th>系列数</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Year 1</td><td class="num-cell">68,000</td><td>545</td><td>4+1</td></tr>
+              <tr><td>Year 2</td><td class="num-cell">100,000</td><td>820</td><td>7</td></tr>
+              <tr><td>Year 3</td><td class="num-cell">165,000</td><td>1,385</td><td>10-12</td></tr>
+              <tr class="total-row"><td>累计</td><td class="navy-cell">333,000</td><td>2,750</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <p style="font-weight:600; color:var(--text); margin-bottom:6px;">消费者购买决策因素</p>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead>
+              <tr><th>排名</th><th>因素</th><th>权重</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong>除湿效果</strong></td><td>25%</td></tr>
+              <tr><td>2</td><td><strong>噪音水平</strong></td><td>20%</td></tr>
+              <tr><td>3</td><td>能效/运行成本</td><td>18%</td></tr>
+              <tr><td>4</td><td>价格</td><td>15%</td></tr>
+              <tr><td>5</td><td>水箱容量(≥5L)</td><td>10%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:6px; font-size:11px; color:var(--text3);">12L/天为黄金甜点位，40dB是卧室噪音黄金分界线</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task C: 塔扇库存核对 ============ -->
+  <div class="section">
+    <div class="section-title sty-orange"><span class="num">4</span> 塔扇多渠道库存核对</div>
+
+    <div class="card highlight" style="border-color:var(--orange); background:var(--orange-soft);">
+      <p>核对赫墨品牌5款塔扇在8个渠道/仓位的库存、累计销量与发货数据，覆盖OTTO、BOL、邓一鸣、TikTok、深圳仓、杭州仓、超维思考、郑小郑，完成三方数据交叉验证。</p>
+    </div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num orange">5</div>
+        <div class="score-label">塔扇型号</div>
+        <div class="score-desc">TFH06ET/08ET/TFL06EB/06ET/08ET</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num">8</div>
+        <div class="score-label">渠道/仓位</div>
+        <div class="score-desc">平台+分销+仓库</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num navy">1,948</div>
+        <div class="score-label">总库存</div>
+        <div class="score-desc">5款合计</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">1,873</div>
+        <div class="score-label">累计销量</div>
+        <div class="score-desc">发货1,892</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>型号</th>
+              <th>总库存</th>
+              <th>累计销量</th>
+              <th>发货数据</th>
+              <th>库存-销量</th>
+              <th>销量-发货</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TFH06ET</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">352</td>
+              <td class="num-cell">348</td>
+              <td><span class="pill pill-red">-2</span></td>
+              <td><span class="pill pill-green">+4</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFH08ET</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">325</td>
+              <td class="num-cell">329</td>
+              <td><span class="pill pill-green">+25</span></td>
+              <td><span class="pill pill-red">-4</span></td>
+            </tr>
+            <tr style="background:#fdf0eb;">
+              <td><strong>⭐ TFL06EB</strong></td>
+              <td class="num-cell">600</td>
+              <td class="num-cell">557</td>
+              <td class="num-cell">578</td>
+              <td><span class="pill pill-green">+43</span></td>
+              <td><span class="pill pill-red">-21</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFL06ET</strong></td>
+              <td class="num-cell">303</td>
+              <td class="num-cell">286</td>
+              <td class="num-cell">286</td>
+              <td><span class="pill pill-green">+17</span></td>
+              <td><span class="pill pill-yellow">0</span></td>
+            </tr>
+            <tr>
+              <td><strong>TFL08ET</strong></td>
+              <td class="num-cell">345</td>
+              <td class="num-cell">353</td>
+              <td class="num-cell">351</td>
+              <td><span class="pill pill-red">-8</span></td>
+              <td><span class="pill pill-green">+2</span></td>
+            </tr>
+            <tr class="total-row">
+              <td>合计</td>
+              <td class="navy-cell">1,948</td>
+              <td class="navy-cell">1,873</td>
+              <td class="navy-cell">1,892</td>
+              <td>+75</td>
+              <td>-19</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">
+        <span class="hl-orange">核对发现：</span>TFL06EB为销量最佳型号(557台)，库存也最高(600台)，OTTO为主渠道(326台发货)。<span class="hl-red">TFL06EB发货数据高出销量21台</span>，存在备货发货未入销售记录的情况。TikTok渠道多款库存/销量为0，渠道活跃度低。深圳仓发货普遍低于库存(如TFL06EB库存57/发货36)，存在仓内滞留。<span class="hl">总库存1948台高于累计销量1873台</span>，整体库存周转健康，但需关注TFL06EB与TFL08ET的库存-销量负差。
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <strong>数据来源：</strong>工厂除湿机产品线完整规格表(14系列)、除湿机产品欧洲市场选型与销量预测报告(2026-07-15)、塔扇库存核对表(第5版)。<br>
+    <strong>报告日期：</strong>2026年7月15日 · <strong>报告人：</strong>实习生。
+  </div>
+
+</div>
+</body>
+</html>
