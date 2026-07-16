@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月7-8日 · 慈溪出差</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --border: #e4e8f0;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #3D6F94;
+    --accent-soft: #E9F1F6;
+    --accent-dark: #2c5270;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #245c55;
+    --teal-soft: #dcebe7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #3D6F94 0%, #2c5270 100%); border-radius: 14px; padding: 32px 30px; color: #fff; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 14px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin-bottom: 28px; align-items: stretch; }
+  .tl-item { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; position: relative; }
+  .tl-item:not(:last-child) { margin-right: 28px; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 16px; height: 2px; background: var(--text3); }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; right: -28px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid var(--text3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; z-index: 1; }
+  .tl-date { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+  .tl-title { font-size: 13.5px; font-weight: 600; color: var(--text); margin: 4px 0 6px; }
+  .tl-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; }
+  .tl-item.a { border-top: 3px solid var(--accent); }
+  .tl-item.b { border-top: 3px solid var(--orange); }
+  .tl-item.c { border-top: 3px solid var(--teal); }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 16px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 600; }
+  .section-title.sty-orange { border-color: var(--orange); }
+  .section-title.sty-orange .num { background: var(--orange); }
+  .section-title.sty-teal { border-color: var(--teal); }
+  .section-title.sty-teal .num { background: var(--teal); }
+
+  /* Meeting label */
+  .meeting-label { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 14px; }
+  .meeting-label.orange { background: var(--orange-soft); border-color: var(--orange); color: var(--orange); }
+  .meeting-label.teal { background: var(--teal-soft); border-color: var(--teal); color: var(--teal); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 14px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .card p { color: var(--text2); font-size: 13.5px; margin-bottom: 8px; }
+  .card ul { padding-left: 18px; color: var(--text2); font-size: 13.5px; }
+  .card ul li { margin-bottom: 5px; }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .score-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .score-desc { font-size: 11.5px; color: var(--text2); margin-top: 5px; line-height: 1.4; }
+
+  /* Tag pills */
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-blue { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-teal { background: var(--teal-soft); border: 1px solid var(--teal); color: var(--teal); }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #F0F3F8; color: var(--text2); font-weight: 500; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data tr:hover td { background: #FAFBFE; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); }
+
+  /* Insight box */
+  .insight { border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+  .insight.blue { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .insight.teal { background: var(--teal-soft); border: 1px solid var(--teal); }
+  .insight.orange { background: var(--orange-soft); border: 1px solid #E8A47F; }
+  .insight.green { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .insight.yellow { background: var(--yellow-soft); border: 1px solid #E6C070; }
+  .insight h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .insight.blue h4 { color: var(--accent); }
+  .insight.teal h4 { color: var(--teal); }
+  .insight.orange h4 { color: var(--orange); }
+  .insight.green h4 { color: var(--green); }
+  .insight.yellow h4 { color: var(--yellow); }
+  .insight p { font-size: 13px; color: var(--text); }
+
+  /* Reflection list */
+  .reflect-list { list-style: none; }
+  .reflect-list li { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .reflect-list li:last-child { border-bottom: none; }
+  .reflect-num { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .reflect-list .rl-title { font-weight: 600; color: var(--text); font-size: 13.5px; margin-bottom: 3px; }
+  .reflect-list .rl-desc { font-size: 12.5px; color: var(--text2); }
+  .reflect-list .rl-src { font-size: 11px; color: var(--text3); margin-top: 3px; }
+
+  /* Highlight text */
+  .hl { color: var(--accent); font-weight: 600; }
+  .hl-orange { color: var(--orange); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
+  .hl-teal { color: var(--teal); font-weight: 600; }
+
+  /* Process flow */
+  .flow-row { display: flex; align-items: stretch; gap: 0; margin: 12px 0; flex-wrap: wrap; }
+  .flow-step { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; position: relative; }
+  .flow-step:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 16px; z-index: 1; }
+  .flow-step .fs-num { font-size: 11px; color: var(--text3); font-weight: 600; }
+  .flow-step .fs-title { font-size: 12.5px; font-weight: 600; color: var(--text); margin: 2px 0; }
+  .flow-step .fs-desc { font-size: 11px; color: var(--text2); }
+
+  /* Compare box */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare-box { border-radius: 10px; padding: 16px; }
+  .compare-box.ceramic { background: var(--orange-soft); border: 1px solid #E8A47F; }
+  .compare-box.aluminum { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .compare-box h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 8px; }
+  .compare-box.ceramic h4 { color: var(--orange); }
+  .compare-box.aluminum h4 { color: var(--accent); }
+  .compare-box .cb-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px dashed rgba(0,0,0,0.06); }
+  .compare-box .cb-row:last-child { border-bottom: none; }
+  .compare-box .cb-label { color: var(--text2); }
+  .compare-box .cb-val { font-weight: 600; }
+
+  /* Client badges */
+  .client-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .client-badge { background: #F0F3F8; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 12px; color: var(--text2); font-weight: 500; }
+
+  .footer-note { font-size: 11.5px; color: var(--text3); margin-top: 18px; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.8; }
+
+  @media (max-width: 760px) {
+    .timeline { flex-direction: column; gap: 12px; }
+    .tl-item:not(:last-child) { margin-right: 0; margin-bottom: 12px; }
+    .tl-item:not(:last-child)::after, .tl-item:not(:last-child)::before { display: none; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .flow-row { flex-direction: column; }
+    .flow-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -14px; transform: translateX(50%); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月7-8日 · 慈溪出差 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">赫墨合作商沟通 · 国际物流业务沟通 · 宁波富达工厂实地考察</div>
+    <div class="tags">
+      <span class="tag">🤝 合作商沟通</span>
+      <span class="tag">🚢 物流税务</span>
+      <span class="tag">🏭 工厂考察</span>
+      <span class="tag">📊 商业模式</span>
+    </div>
+  </div>
+
+  <!-- 出差时间线概览 -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 出差时间线概览</div>
+    <div class="timeline">
+      <div class="tl-item a">
+        <div class="tl-date">7.7 · 上午</div>
+        <div class="tl-title">赫墨合作商沟通</div>
+        <div class="tl-desc">产品技术原理（陶土vs铝板发热体）<br>市场选品方向与目标国家</div>
+      </div>
+      <div class="tl-item b">
+        <div class="tl-date">7.7 · 下午</div>
+        <div class="tl-title">国际物流业务沟通</div>
+        <div class="tl-desc">跨境物流四方案对比<br>税务合规与商业模式研判</div>
+      </div>
+      <div class="tl-item c">
+        <div class="tl-date">7.8</div>
+        <div class="tl-title">慈溪工厂实地考察</div>
+        <div class="tl-desc">宁波富达智能科技验厂<br>品控/报价/PortaSplit/除湿机</div>
+      </div>
+    </div>
+    <div class="card">
+      <p>7月7-8日在慈溪出差期间，先后参与了<span class="hl">三场不同层面的业务沟通</span>：7日上午与赫墨合作商讨论产品技术原理与市场选品方向；7日下午与国际物流方深入交流跨境物流方案、税务合规风险及商业模式战略；8日实地走访<strong>宁波富达智能科技有限公司</strong>（29年制冷行业经验、900+员工），系统考察了移动空调与除湿机的智能产线、品控体系、报价模式及市场判断。三场沟通从产品端→运营端→供应端形成了完整的认知闭环。</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.7 上午：赫墨合作商沟通 ============ -->
+  <div class="section">
+    <div class="meeting-label">📅 7月7日 · 赫墨合作商沟通</div>
+    <div class="section-title"><span class="num">2</span> 产品技术原理与市场选品</div>
+
+    <div class="card highlight">
+      <h3>核心认知：发热体材质直接决定产品定位与目标市场</h3>
+      <p>暖风机发热体分为<span class="hl-orange">陶土（陶瓷）</span>与<span class="hl">铝板（铝翅片）</span>两种技术路线。陶土发热体更重、成本更高，但散热效果与发热效率更优——其原理是铁片加热后传导至陶土，由陶土进行二次散热，部分高端款还在陶土两面覆有<span class="hl-orange">发热膜</span>，进一步提升热效率。铝板发热体则依靠铝翅片直接散热，成本更低、重量更轻。市场分布上，<strong>法国市场最大量为陶土</strong>，西班牙、意大利也有部分需求；其余欧洲市场以铝板为主。</p>
+    </div>
+
+    <!-- 陶土 vs 铝板 -->
+    <div class="card">
+      <h3>陶土 vs 铝板发热体对比</h3>
+      <div class="compare-grid">
+        <div class="compare-box ceramic">
+          <h4>🔴 陶土发热体</h4>
+          <div class="cb-row"><span class="cb-label">散热原理</span><span class="cb-val">铁片加热→陶土二次散热</span></div>
+          <div class="cb-row"><span class="cb-label">发热膜</span><span class="cb-val">两面覆膜（高端款）</span></div>
+          <div class="cb-row"><span class="cb-label">重量</span><span class="cb-val">明显更重</span></div>
+          <div class="cb-row"><span class="cb-label">成本</span><span class="cb-val">更高</span></div>
+          <div class="cb-row"><span class="cb-label">散热效果</span><span class="cb-val">更优</span></div>
+          <div class="cb-row"><span class="cb-label">未来趋势</span><span class="cb-val">看好，性能更强</span></div>
+          <div class="cb-row"><span class="cb-label">主力市场</span><span class="cb-val">法国（最大量）</span></div>
+        </div>
+        <div class="compare-box aluminum">
+          <h4>🔵 铝板发热体</h4>
+          <div class="cb-row"><span class="cb-label">散热原理</span><span class="cb-val">铝翅片直接散热</span></div>
+          <div class="cb-row"><span class="cb-label">重量</span><span class="cb-val">较轻</span></div>
+          <div class="cb-row"><span class="cb-label">成本</span><span class="cb-val">更低</span></div>
+          <div class="cb-row"><span class="cb-label">散热效果</span><span class="cb-val">标准</span></div>
+          <div class="cb-row"><span class="cb-label">适用市场</span><span class="cb-val">大部分欧洲国家</span></div>
+          <div class="cb-row"><span class="cb-label">主力市场</span><span class="cb-val">德/英/荷/波等</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 市场选品方向 -->
+    <div class="card">
+      <h3>市场选品方向与定价信号</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>目标市场</th><th>产品方向</th><th>关键信息</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>德/法/西/波/荷/意</strong></td>
+              <td><span class="pill pill-blue">移动空调主力</span></td>
+              <td>欧洲主力市场；法国偏好陶土发热体，其余以铝板为主</td>
+            </tr>
+            <tr>
+              <td><strong>英国</strong></td>
+              <td><span class="pill pill-teal">渠道开拓中</span></td>
+              <td>已在卖，售价可达800-900欧；需单独备注产品要求；自然排名约50位，年出约3000台</td>
+            </tr>
+            <tr>
+              <td><strong>仿生火焰暖风机</strong></td>
+              <td><span class="pill pill-orange">差异化方向</span></td>
+              <td>仿生火焰一般用于踢脚线产品，视觉效果好，可作为高端差异化方向</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight orange" style="margin-top:12px;">
+        <h4>定价信号：英国市场利润空间可观</h4>
+        <p>会议中提到真实案例：一台移动空调出厂约3800元人民币，运费约2000元，合计成本约5800元；而在英国终端售价可达800-900欧元（约合7000+元人民币），利润空间充足。英国市场是目前重点开拓方向。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 7.7 下午：国际物流业务沟通 ============ -->
+  <div class="section">
+    <div class="meeting-label orange">📅 7月7日 · 国际物流业务沟通</div>
+    <div class="section-title sty-orange"><span class="num">3</span> 跨境物流方案与税务合规</div>
+
+    <div class="card highlight" style="border-color:var(--orange);background:var(--orange-soft);">
+      <h3>核心认知：物流方案与税务模式共同决定 landed cost</h3>
+      <p>跨境贸易的最终成本不仅是工厂出厂价，更取决于物流方案选择（海运/铁路/空运）和税务模式（自税/平台代缴）。自税模式虽可降低平台扣点，但需承担海外主体维护成本与被查税的巨额风险——德国税务稽查可追溯数年，一次查税罚款可达数百万。物流方面，北极航道开通有望将海运时效从40+天缩短至25天，但初期价格不会便宜。</p>
+    </div>
+
+    <!-- 物流方案对比 -->
+    <div class="card">
+      <h3>四种物流方案对比</h3>
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>方案</th><th>时效</th><th>成本</th><th>特点</th><th>适用场景</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>海运</strong></td>
+              <td class="num-cell">40+天</td>
+              <td class="num-cell">最低</td>
+              <td>北极航道开通后有望缩短至25天，但初期不便宜</td>
+              <td>大批量常规备货</td>
+            </tr>
+            <tr>
+              <td><strong>欧洲专列</strong></td>
+              <td class="num-cell">~25天</td>
+              <td class="num-cell">海运3-4倍</td>
+              <td>每周2班列，每班50柜；深圳→欧洲，比海运快</td>
+              <td>旺季补货、时效敏感</td>
+            </tr>
+            <tr>
+              <td><strong>空运 DHL</strong></td>
+              <td class="num-cell">~3天</td>
+              <td class="num-cell">最高</td>
+              <td>最快方案，确认上飞机即可开始售卖</td>
+              <td>紧急补货、高价值产品</td>
+            </tr>
+            <tr>
+              <td><strong>空运 FedEx</strong></td>
+              <td class="num-cell">4-6天</td>
+              <td class="num-cell">次高</td>
+              <td>需国内报关后推送，时效取决于目的国清关</td>
+              <td>次紧急补货</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 税务合规 -->
+    <div class="card">
+      <h3>自税 vs 平台代缴税务模式</h3>
+      <div class="compare-grid">
+        <div class="compare-box" style="background:var(--green-soft);border:1px solid var(--green-border);">
+          <h4 style="color:var(--green);">平台代缴模式</h4>
+          <div class="cb-row"><span class="cb-label">操作方式</span><span class="cb-val">平台自动代扣代缴</span></div>
+          <div class="cb-row"><span class="cb-label">成本</span><span class="cb-val">按实际销售额扣缴</span></div>
+          <div class="cb-row"><span class="cb-label">风险</span><span class="cb-val">低，平台合规</span></div>
+          <div class="cb-row"><span class="cb-label">适合</span><span class="cb-val">中小卖家</span></div>
+        </div>
+        <div class="compare-box" style="background:var(--orange-soft);border:1px solid #E8A47F;">
+          <h4 style="color:var(--orange);">自税模式</h4>
+          <div class="cb-row"><span class="cb-label">操作方式</span><span class="cb-val">自主申报（按货值25%-30%）</span></div>
+          <div class="cb-row"><span class="cb-label">前期投入</span><span class="cb-val">海外主体+税务师+地址 ¥10万+</span></div>
+          <div class="cb-row"><span class="cb-label">风险</span><span class="cb-val">高，被查可追溯数年</span></div>
+          <div class="cb-row"><span class="cb-label">适合</span><span class="cb-val">有稳定量级的大卖家</span></div>
+        </div>
+      </div>
+      <div class="insight orange" style="margin-top:12px;">
+        <h4>⚠️ 税务风险警示</h4>
+        <p>自税模式下若未如实申报，德国税务稽查可追溯数年，单次罚款可达<span class="hl-orange">数百万</span>。海外主体维护成本高昂——需真实注册地址（德国税务师年费数万）、海外办公人员、VAT税号等全套基础设施，仅基础搭建就需¥10万+。小卖家若无稳定量级，不应冒险做自税，平台代缴更安全。此外，存在部分卖家利用出厂价与零售价差额进行退税套利的灰色操作，目前正被严打。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商业模式与渠道战略 -->
+  <div class="section">
+    <div class="meeting-label orange">📅 7月7日 · 国际物流业务沟通（续）· 商业模式与市场趋势</div>
+    <div class="section-title sty-orange"><span class="num">4</span> 商业模式与渠道战略研判</div>
+
+    <div class="card highlight" style="border-color:var(--orange);background:var(--orange-soft);">
+      <h3>核心认知：量级决定模式，产业链延伸决定利润厚度</h3>
+      <p>会议中反复强调一个原则——<strong>"没有量就没有意义"</strong>。与大公司建立稳定合作后，切20%的量就足以支撑业务。头部大客户每月50条柜的流水，本身就是最好的信用背书，以此为根基接小单轻而易举。同时，将服务链条从单纯卖货延伸至<strong>海外仓→物流派送→平台代运营</strong>，能吃的"面条越来越长"，客户黏性也越强。</p>
+    </div>
+
+    <!-- 产业链延伸 -->
+    <div class="card">
+      <h3>产业链延伸逻辑</h3>
+      <div class="flow-row">
+        <div class="flow-step" style="border-top:3px solid var(--accent);">
+          <div class="fs-num">STEP 1</div>
+          <div class="fs-title">卖货</div>
+          <div class="fs-desc">提供资金流<br>解决客户资金需求</div>
+        </div>
+        <div class="flow-step" style="border-top:3px solid var(--teal);">
+          <div class="fs-num">STEP 2</div>
+          <div class="fs-title">海外仓</div>
+          <div class="fs-desc">为客户介绍/提供<br>海外仓储服务</div>
+        </div>
+        <div class="flow-step" style="border-top:3px solid var(--orange);">
+          <div class="fs-num">STEP 3</div>
+          <div class="fs-title">物流派送</div>
+          <div class="fs-desc">尾程派送业务<br>本地化配送</div>
+        </div>
+        <div class="flow-step" style="border-top:3px solid var(--green);">
+          <div class="fs-num">STEP 4</div>
+          <div class="fs-title">平台服务</div>
+          <div class="fs-desc">平台代运营/收购<br>客户深度绑定</div>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:12.5px;color:var(--text2);">关键原则：主体定位要清晰。如果是卖货公司，就不适合同时做货代和海外仓——但可以通过资源整合，将各个环节串联起来，让客户"离不开"。</p>
+    </div>
+
+    <!-- 量级思维 -->
+    <div class="card">
+      <h3>"量级思维"与大客户背书</h3>
+      <div class="insight yellow">
+        <h4>大客户切量战略</h4>
+        <p>与百亿级家居大卖（如杭州横林百亿家居）建立联系后，切20%的量就足以支撑业务。大客户每月50条柜在海上流转的流水，是最好的信用背书。以大客户背书接小单，小单自己赚钱，大单做流水——这是头部卖家的典型打法。反之，没有稳定量级的中小卖家合作"没有意义"，走散货拼柜（10-20个方）利润微薄且不稳定。</p>
+      </div>
+      <div class="insight blue" style="margin-top:10px;">
+        <h4>拼柜逻辑</h4>
+        <p>大客户的整柜里可以混装锂电池等带电产品（10-20个方），只要大部分是正常货物，海关可以正常报关。但散客拼柜量太小没有意义——"没有量，真的大公司就是我这一波要走几千台，走掉就走掉就行了，不需要去挣那几十个方的钱"。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 7.8 工厂实地考察 ============ -->
+  <div class="section">
+    <div class="meeting-label teal">📅 7月8日 · 慈溪工厂实地考察</div>
+    <div class="section-title sty-teal"><span class="num">5</span> 宁波富达智能科技 工厂考察</div>
+
+    <div class="card highlight" style="border-color:var(--teal);background:var(--teal-soft);">
+      <h3>核心印象：29年制冷行业积淀，智能化品控体系完善</h3>
+      <p><strong>宁波富达智能科技有限公司</strong>，1998年起深耕制冷行业，已有<span class="hl-teal">29年</span>经验，员工<span class="hl-teal">900+人</span>。三期厂区合计约200亩、约20万㎡。生产线引入中央集中供料系统、68台注塑机全机械手操作、机器人完成风箱/打包/搬运。2025年除湿机出货约130万台、移动空调约70万台，日均发运10余个集装箱，当前流通订单30万台持续流转。</p>
+    </div>
+
+    <div class="card">
+      <h3>工厂核心数据</h3>
+      <div class="score-grid">
+        <div class="score-card" style="border-top:3px solid var(--accent);">
+          <div class="score-num">29<span style="font-size:13px;">年</span></div>
+          <div class="score-label">制冷行业经验</div>
+          <div class="score-desc">1998年起<br>深厚技术积淀</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--teal);">
+          <div class="score-num">900<span style="font-size:13px;">+</span></div>
+          <div class="score-label">员工总数</div>
+          <div class="score-desc">含5年以上<br>老焊工团队</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--orange);">
+          <div class="score-num">200<span style="font-size:13px;">万台</span></div>
+          <div class="score-label">2025年总出货</div>
+          <div class="score-desc">除湿机130万<br>移动空调70万</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--green);">
+          <div class="score-num">68<span style="font-size:13px;">台</span></div>
+          <div class="score-label">注塑机保有量</div>
+          <div class="score-desc">中央集中供料<br>全机械手操作</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 品控红线 -->
+    <div class="card">
+      <h3>品控红线：电脑板与焊接绝不能降</h3>
+      <div class="insight blue">
+        <h4>电脑板（PCB）— 美的盈科供应</h4>
+        <p>核心电子件使用美的旗下<span class="hl">盈科（Yinke）</span>电脑板，绝不在核心部件上降本。工厂方强调：奥力曾因电脑板问题导致60个集装箱退货，直接倒闭——"电脑板这个成本绝对不能省的，你省了就要出问题"。可降本项仅为塑料壁厚（2.5→2.4mm）、包装护角等非核心部件。</p>
+      </div>
+      <div class="insight green">
+        <h4>焊接 — 自动焊+氦检漏双重保障</h4>
+        <p>焊工工资高于车间主任（5年以上经验），采用<span class="hl-green">自动焊+氦检漏</span>双重保障。漏气是最难修的故障，一旦批量漏气则无法挽回。工厂通过高压气密性检测流水线，在包装前逐一验证铜管焊点密封性，确保运输后不会出现开箱即损。</p>
+      </div>
+      <div class="insight yellow">
+        <h4>螺纹翅片 — 增加散热接触面</h4>
+        <p>翅片采用螺纹设计而非平面，专门用于<span class="hl">增加接触面积</span>，提升散热与湿润效果。这是小厂难以做到的工艺细节，体现了工厂在热交换效率上的技术积累。</p>
+      </div>
+    </div>
+
+    <!-- 冷暖技术与模块化报价 -->
+    <div class="card">
+      <h3>移动空调冷暖技术与模块化报价</h3>
+      <p>移动空调通过加装<span class="hl">四通阀</span>实现冷暖切换——原本出冷风的一侧可转换为出热风，实现一机两用。该方案在制热模式下利用压缩机热泵原理，比纯电热取暖效率更高，但制热量会小于制冷量（同等压缩机8000BTU，制热可能降至6000-7000BTU）。冷暖款仅增加约8美金（约¥60）成本，但欧洲制暖需求季节性太强（仅1-2个月），量不会太大但存在需求。</p>
+      <div class="score-grid" style="margin-top:12px;">
+        <div class="score-card" style="border-top:3px solid var(--accent);">
+          <div class="score-num">~¥800</div>
+          <div class="score-label">含税出厂价（基础款）</div>
+          <div class="score-desc">8000BTU基础价<br>按需叠加功能</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--teal);">
+          <div class="score-num">+¥60</div>
+          <div class="score-label">冷暖版加价</div>
+          <div class="score-desc">增加四通阀<br>实现冷暖切换</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--orange);">
+          <div class="score-num">+¥20</div>
+          <div class="score-label">WiFi模块加价</div>
+          <div class="score-desc">可选配置<br>按需选配</div>
+        </div>
+        <div class="score-card" style="border-top:3px solid var(--green);">
+          <div class="score-num">+¥14</div>
+          <div class="score-label">护脚（四只）加价</div>
+          <div class="score-desc">运输保护用<br>商超客户可免</div>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--text3);">工厂采用"基础报价+功能选配"模式：基础价如¥800，冷暖加¥60、WiFi加¥20、护脚四只加¥14，客户按需组合。最小起订量为一个40HQ高柜（约680台×8000BTU机型）。交期：常规约45天，不改款约35天，打样约1周。工厂报"底价"无议价空间，但慈溪区域性价比最优（对比广东美博/金丰盛）。</p>
+    </div>
+
+    <!-- PortaSplit市场分析 -->
+    <div class="card">
+      <h3>美的PortaSplit分体式移动空调：市场窗口判断</h3>
+      <div class="insight blue">
+        <h4>并非技术领先，而是场景契合</h4>
+        <p>工厂方对美的PortaSplit的技术判断：本质是将压缩机与室内机分离，缩短连接管，技术上是"窗机改良版"，对制冷企业来说很简单。其真正价值在于<strong>场景契合</strong>——欧洲很多国家（瑞士等）墙上不允许挂外机，需业主委员会审批+邻居不投诉；碳排放/环保政策限制传统分体空调安装；人工安装费高昂（可能比空调本身还贵）。</p>
+      </div>
+      <div class="insight orange">
+        <h4>三年市场窗口预判</h4>
+        <p>第1年暴利（今年缺货断货），第2年利润下降但仍有溢价，第3年价格战开始，部分企业出局——"中国的模仿制造能力太强了，买一个样机回来抄一抄就好了"。建议做3-5年中长期规划，靠前两年的评价沉淀+售后兜底+品牌认知建立护城河，而不是跟着卷价格。</p>
+      </div>
+    </div>
+
+    <!-- 除湿机市场 -->
+    <div class="card">
+      <h3>除湿机品类：市场规模是移动空调的10倍</h3>
+      <p>除湿机按日除湿量划分规格：<span class="pill pill-blue">12L</span><span class="pill pill-blue">20L</span><span class="pill pill-blue">24L</span><span class="pill pill-blue">30L</span><span class="pill pill-blue">50L</span><span class="pill pill-blue">60L</span>。家用主力为20-24L，12L为商超促销低端款。工厂2025年除湿机出货约<span class="hl">130万台</span>，是移动空调（70万台）的近两倍——而整体市场规模更是移动空调的<span class="hl-green">10倍</span>。</p>
+      <div class="insight green" style="margin-top:10px;">
+        <h4>除湿机是"隐形好品类"</h4>
+        <p>退货率极低——消费者可直观看到水箱出水，效果可验证；使用时间短、售后少，5-8年后电子元件老化自然更新换代；渗透率极低（中国1000个家庭才1台，日韩英国家庭几乎家家都有），市场远未饱和。与经济发展正相关，是改善生活品质的电器，适合作为长期基本盘品类。</p>
+      </div>
+    </div>
+
+    <!-- 核心客户与市场信号 -->
+    <div class="card">
+      <h3>核心客户背书与市场爆发信号</h3>
+      <p>工厂与国内外头部品牌深度合作，客户体系覆盖家电巨头、欧洲商超、跨境大卖三大渠道：</p>
+      <div class="client-badges">
+        <span class="client-badge">海尔</span>
+        <span class="client-badge">海信</span>
+        <span class="client-badge">美的</span>
+        <span class="client-badge">先锋</span>
+        <span class="client-badge">亚洲</span>
+        <span class="client-badge">德龙 Delonghi</span>
+        <span class="client-badge">伊莱克斯 Electrolux</span>
+        <span class="client-badge">得力</span>
+        <span class="client-badge">豪雅</span>
+        <span class="client-badge">乐歌</span>
+        <span class="client-badge">傲基</span>
+        <span class="client-badge">LEDO</span>
+        <span class="client-badge">Aldi</span>
+      </div>
+      <div class="insight green" style="margin-top:12px;">
+        <h4>市场爆发信号：欧洲移动空调全部卖空，2027年订单已开始下</h4>
+        <p>今年全球变暖叠加欧洲人工安装费高昂，移动空调成为刚需替代品，工厂所有客户库存全部清空，天天加班补货。终端售价翻倍（出厂约€99→终端€200+），利润极高。已有客户开始下<span class="hl-green">2027年订单</span>。售后率约15%（含5%不可规避退换），工厂正常水平5-6%，当前因赶工略高。预计3年后回归平稳、价格战来临，今年必须完成首单到仓。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 实习收获与反思 -->
+  <div class="section">
+    <div class="section-title"><span class="num">6</span> 实习收获与反思</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <ul class="reflect-list">
+        <li>
+          <span class="reflect-num">1</span>
+          <div>
+            <div class="rl-title">从"看产品参数"到"理解产品原理"的认知跃迁</div>
+            <div class="rl-desc">以前看产品只关注功率、外观、价格这些表面参数，这次与赫墨合作商沟通时亲手对比了陶土和铝板两种发热体后，才真正理解了"为什么法国市场要陶土"——不是因为品牌偏好，而是因为陶土的二次散热原理确实更高效。触摸到陶土的重量、看到发热膜的结构，这种实物认知是看资料无法替代的。未来做选品分析时，我会更多从技术原理出发理解市场差异。</div>
+            <div class="rl-src">📌 来源：7.7 赫墨合作商沟通</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">2</span>
+          <div>
+            <div class="rl-title">跨境贸易的真正门槛在物流与税务，而非产品本身</div>
+            <div class="rl-desc">这次与国际物流方的沟通最大的认知冲击来自税务合规部分。以前认为跨境贸易的核心是"好产品+好价格"，现在意识到出厂价只是起点——自税模式下的海外主体搭建（¥10万+）、德国税务师年费、被查税的数百万罚款风险，这些隐性成本和风险才是真正的护城河或陷阱。北极航道、欧洲专列、空运DHL/FedEx各有适用场景，物流方案的选择直接影响landed cost和资金周转效率。做选品决策时必须把物流和税务成本前置测算。</div>
+            <div class="rl-src">📌 来源：7.7 国际物流业务沟通</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">3</span>
+          <div>
+            <div class="rl-title">理解了"量级思维"和"产业链延伸"的商业逻辑</div>
+            <div class="rl-desc">国际物流沟通中"没有量就没有意义"这句话让我印象极深。与大客户合作不是为了吃下全部量，而是用20%的切量建立背书，再以此吸引小单。产业链从卖货延伸到海外仓、物流派送、平台服务，每延伸一环就多一层利润和客户黏性。这种"以大带小、以长吃深"的商业逻辑，与我日常整理的Stuttgart发货物流数据是高度关联的——实际上我日常处理的物流环节，正是这条产业链延伸链条上的关键一环。</div>
+            <div class="rl-src">📌 来源：7.7 国际物流业务沟通</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">4</span>
+          <div>
+            <div class="rl-title">工厂实地考察打破了"纸上谈兵"的认知局限</div>
+            <div class="rl-desc">走进宁波富达——29年制冷经验、900+员工、68台注塑机中央集中供料——看到的不只是规模，更是品控体系的深度。最触动我的是工厂对"核心件不能降"的坚持：电脑板用美的盈科、焊接用自动焊+氦检漏+5年以上老焊工，奥力因电脑板问题60个集装箱退货倒闭的教训让我深刻理解了品控红线的分量。工厂的PFC排产计划也让我认识到：下单不是"今天下明天有"，必须提前45天规划，插单会打乱整个物料链路。</div>
+            <div class="rl-src">📌 来源：7.8 慈溪工厂考察</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">5</span>
+          <div>
+            <div class="rl-title">除湿机"隐形好品类"的认知突破</div>
+            <div class="rl-desc">此前一直将除湿机视为移动空调的附属品类，这次工厂考察彻底改变了认知——除湿机市场规模是移动空调的10倍，工厂年出货130万台vs移动空调70万台。退货率极低（消费者可直观看到水箱出水、效果可验证）、使用时间短不易坏、渗透率极低（中国1000户才1台），这些特征使其成为非常适合跨境电商的长期基本盘品类。不能仅作为移动空调的附属品，而应独立重点规划。</div>
+            <div class="rl-src">📌 来源：7.8 慈溪工厂考察</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">6</span>
+          <div>
+            <div class="rl-title">美的PortaSplit分析教会我"市场窗口期"思维</div>
+            <div class="rl-desc">工厂方对PortaSplit的三年预判（第1年暴利→第2年利润下降→第3年价格战）让我理解了选品不仅看"产品好不好"，更要看"时间窗口对不对"。今年欧洲移动空调全部卖空、终端售价翻倍是短期暴利窗口，但3年后价格战必然来临。穿越周期的关键不是卷价格，而是靠前两年的评价沉淀+售后兜底+品牌认知建立护城河。这种"以时间换壁垒"的思维对后续Q4选品和长期品类规划都有指导意义。</div>
+            <div class="rl-src">📌 来源：7.8 慈溪工厂考察</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

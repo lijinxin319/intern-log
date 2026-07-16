@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年7月13日</title>
+<style>
+  :root {
+    --bg: #f4f7f3;
+    --card: #ffffff;
+    --border: #dde6df;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #1e7a4c;
+    --accent-soft: #eaf5ed;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+    --teal: #245c55;
+    --teal-soft: #dcebe7;
+    --red: #c0392b;
+    --red-soft: #fdf0ee;
+    --blue: #3D6F94;
+    --blue-soft: #E9F1F6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #0d2116 0%, #1f5b3a 58%, #4a8c5e 100%); border-radius: 14px; padding: 28px 30px; color: #fff; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 6px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 12px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Timeline */
+  .timeline { display: flex; gap: 0; margin-bottom: 14px; align-items: stretch; }
+  .tl-item { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 14px; position: relative; }
+  .tl-item:not(:last-child) { margin-right: 28px; }
+  .tl-item:not(:last-child)::after { content: ''; position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 16px; height: 2px; background: var(--text3); }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; right: -28px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 6px solid var(--text3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; z-index: 1; }
+  .tl-date { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+  .tl-title { font-size: 13px; font-weight: 600; color: var(--text); margin: 3px 0 5px; }
+  .tl-desc { font-size: 11.5px; color: var(--text3); line-height: 1.5; }
+  .tl-item.a { border-top: 3px solid var(--accent); }
+  .tl-item.b { border-top: 3px solid var(--orange); }
+  .tl-item.c { border-top: 3px solid var(--purple); }
+
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 15px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; }
+  .section-title.sty-orange { border-color: var(--orange); }
+  .section-title.sty-orange .num { background: var(--orange); }
+  .section-title.sty-purple { border-color: var(--purple); }
+  .section-title.sty-purple .num { background: var(--purple); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card p { color: var(--text2); font-size: 13px; margin-bottom: 6px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .score-num { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .score-num.orange { color: var(--orange); }
+  .score-num.green { color: var(--green); }
+  .score-num.red { color: var(--red); }
+  .score-num.blue { color: var(--blue); }
+  .score-num.purple { color: var(--purple); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .score-desc { font-size: 11px; color: var(--text2); margin-top: 4px; line-height: 1.3; }
+
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-red { background: var(--red-soft); border: 1px solid var(--red); color: var(--red); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-blue { background: var(--blue-soft); border: 1px solid var(--blue); color: var(--blue); }
+  .pill-purple { background: var(--purple-soft); border: 1px solid var(--purple); color: var(--purple); }
+
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #edf4ef; color: #1e3b2b; font-weight: 500; padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); text-align: center; }
+  table.data .total-row td { font-weight: 600; background: #edf4ef; color: var(--text); }
+  table.data .hot { color: var(--orange); font-weight: 600; }
+
+  span.hl { color: var(--accent); font-weight: 600; }
+  span.hl-orange { color: var(--orange); font-weight: 600; }
+  span.hl-red { color: var(--red); font-weight: 600; }
+  span.hl-purple { color: var(--purple); font-weight: 600; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .footer-note { font-size: 11px; color: var(--text3); margin-top: 16px; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.7; }
+
+  @media (max-width: 760px) {
+    .timeline { flex-direction: column; gap: 10px; }
+    .tl-item:not(:last-child) { margin-right: 0; margin-bottom: 10px; }
+    .tl-item:not(:last-child)::after, .tl-item:not(:last-child)::before { display: none; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .row2, .row3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年7月13日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">塔扇与空调库存统计及分配提醒 · TikTok 产品前期调研 · 闪铸 3D 打印机欧洲利润精算</div>
+    <div class="tags">
+      <span class="tag">📊 库存统计</span>
+      <span class="tag">🔍 前期调研</span>
+      <span class="tag">💰 利润测算</span>
+    </div>
+  </div>
+
+  <!-- ============ 任务概览 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日任务概览</div>
+    <div class="timeline">
+      <div class="tl-item a">
+        <div class="tl-date">Task A · 库存统计</div>
+        <div class="tl-title">塔扇与移动空调库存统计</div>
+        <div class="tl-desc">5款塔扇 + 1款空调，各6个平台，库存占用率测算并提醒 Karena 做库存分配</div>
+      </div>
+      <div class="tl-item b">
+        <div class="tl-date">Task B · 前期调研</div>
+        <div class="tl-title">TikTok 小组产品前期调研</div>
+        <div class="tl-desc">基于 ASD 泛欧市场可行性报告，梳理欧洲市场品类机会与进入策略</div>
+      </div>
+      <div class="tl-item c">
+        <div class="tl-date">Task C · 利润精算</div>
+        <div class="tl-title">闪铸 3D 打印机利润测算</div>
+        <div class="tl-desc">Creator 5 / 5 Pro 在 OTTO / bol / MediaMarkt 单台 P&L 测算</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task A: 塔扇 + 空调库存 ============ -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> 塔扇与移动空调库存统计</div>
+
+    <div class="row2" style="margin-bottom: 12px;">
+      <div>
+        <div class="score-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="score-card">
+            <div class="score-num">1,940</div>
+            <div class="score-label">塔扇总库存</div>
+            <div class="score-desc">5款SKU</div>
+          </div>
+          <div class="score-card">
+            <div class="score-num red">164</div>
+            <div class="score-label">塔扇剩余</div>
+            <div class="score-desc">库存占用率 8.4%</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="score-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="score-card">
+            <div class="score-num">500</div>
+            <div class="score-label">空调总库存</div>
+            <div class="score-desc">SKY-16-76 单冷</div>
+          </div>
+          <div class="score-card">
+            <div class="score-num green">151</div>
+            <div class="score-label">空调剩余</div>
+            <div class="score-desc">库存占用率 30.2%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>产品型号</th>
+              <th>总库存</th>
+              <th>累计销量</th>
+              <th>剩余</th>
+              <th>消耗率</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>塔扇 · TFH06ET-白色</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">342</td>
+              <td class="num-cell" style="color:var(--red)">9</td>
+              <td><span class="pill pill-red">97.7%</span></td>
+              <td>即将售罄</td>
+            </tr>
+            <tr>
+              <td><strong>塔扇 · TFH08ET-白色</strong></td>
+              <td class="num-cell">350</td>
+              <td class="num-cell">312</td>
+              <td class="num-cell">35</td>
+              <td><span class="pill pill-orange">89.1%</span></td>
+              <td>库存紧张</td>
+            </tr>
+            <tr>
+              <td><strong>塔扇 · TFL06EB-白色</strong></td>
+              <td class="num-cell">600</td>
+              <td class="num-cell hot">509</td>
+              <td class="num-cell">91</td>
+              <td><span class="pill pill-orange">84.8%</span></td>
+              <td>主力爆款</td>
+            </tr>
+            <tr>
+              <td><strong>塔扇 · TFL06ET-白色</strong></td>
+              <td class="num-cell">300</td>
+              <td class="num-cell">248</td>
+              <td class="num-cell">52</td>
+              <td><span class="pill pill-yellow">82.7%</span></td>
+              <td>库存偏紧</td>
+            </tr>
+            <tr>
+              <td><strong>塔扇 · TFL08ET-白色</strong></td>
+              <td class="num-cell">340</td>
+              <td class="num-cell">346</td>
+              <td class="num-cell hot">-6</td>
+              <td><span class="pill pill-red">101.8%</span></td>
+              <td>超卖预警</td>
+            </tr>
+            <tr style="background:#fafdfa;">
+              <td><strong>空调 · SKY-16-76</strong></td>
+              <td class="num-cell">500</td>
+              <td class="num-cell">349</td>
+              <td class="num-cell">151</td>
+              <td><span class="pill pill-blue">30.2%</span></td>
+              <td>库存充裕</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">塔扇整体库存极低（仅剩 8.4%），<span class="hl-red">TFH06ET 仅剩 9 台即将售罄，TFL08ET 出现负库存需核查</span>；空调库存相对充裕（剩 30.2%），但 BOL 和 TikTok 渠道各仅剩 15 台和 6 台偏紧。已向 Karena 发送库存分配提醒。</p>
+    </div>
+  </div>
+
+  <!-- ============ Task B: TikTok 调研 ============ -->
+  <div class="section">
+    <div class="section-title sty-orange"><span class="num">3</span> TikTok 产品前期调研</div>
+
+    <div class="card highlight">
+      <p>基于 <strong>ASD 泛欧市场可行性调研报告</strong>，为 TikTok 项目组梳理欧洲市场进入的品类机会与竞争格局。报告覆盖德、法、英、荷、意、西六国，从品类机会、竞品格局、渠道特征、合规壁垒四个维度展开。</p>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>核心发现</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>市场规模</strong></td><td>欧洲电商渗透率持续提升，TikTok Shop 在英、德快速扩张，社交电商增速领先传统平台</td></tr>
+            <tr><td><strong>品类机会</strong></td><td>智能家居、户外休闲、创意家居为当前增长赛道，与 TikTok 短视频内容属性天然契合</td></tr>
+            <tr><td><strong>竞争格局</strong></td><td>Amazon/OTTO/BOL 主导货架电商，TikTok 差异化在内容驱动转化，适合视觉强品类</td></tr>
+            <tr><td><strong>合规壁垒</strong></td><td>CE/GS 认证、VAT 注册、EPR 合规为硬性门槛，选品确定后需 2-3 个月启动认证</td></tr>
+            <tr><td><strong>物流时效</strong></td><td>欧洲消费者对 3-5 日达有较高预期，建议海外仓前置以保障转化和评价</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Task C: 闪铸利润 ============ -->
+  <div class="section">
+    <div class="section-title sty-purple"><span class="num">4</span> 闪铸 3D 打印机欧洲利润精算</div>
+
+    <div class="score-grid" style="margin-bottom: 12px;">
+      <div class="score-card">
+        <div class="score-num">€829</div>
+        <div class="score-label">C5 Pro 含税售价</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num orange">€455</div>
+        <div class="score-label">C5 Pro 采购成本</div>
+        <div class="score-desc">$520 按 ECB 汇率折算</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num green">€21.12</div>
+        <div class="score-label">单台物流均摊</div>
+        <div class="score-desc">100台拼箱海运</div>
+      </div>
+      <div class="score-card">
+        <div class="score-num purple">23.1 kg</div>
+        <div class="score-label">C5 Pro 毛重</div>
+        <div class="score-desc">含包装</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tbl-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>平台</th>
+              <th>机型</th>
+              <th>含税售价</th>
+              <th>去税收入</th>
+              <th>佣金</th>
+              <th>供应链+售后</th>
+              <th>单台净利</th>
+              <th>净利率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>OTTO</strong></td>
+              <td>Creator 5 Pro</td>
+              <td class="num-cell">€829</td>
+              <td>€696.64</td>
+              <td>€58.03</td>
+              <td>€506.02</td>
+              <td class="num-cell"><strong>€128.59</strong></td>
+              <td><span class="pill pill-green">18.5%</span></td>
+            </tr>
+            <tr>
+              <td><strong>bol.com</strong></td>
+              <td>Creator 5 Pro</td>
+              <td class="num-cell">€829</td>
+              <td>€684.30</td>
+              <td>€58.03</td>
+              <td>€506.02</td>
+              <td class="num-cell"><strong>€120.25</strong></td>
+              <td><span class="pill pill-green">17.6%</span></td>
+            </tr>
+            <tr>
+              <td><strong>MediaMarkt</strong></td>
+              <td>Creator 5 Pro</td>
+              <td class="num-cell">€829</td>
+              <td>€696.64</td>
+              <td>€70.47</td>
+              <td>€506.02</td>
+              <td class="num-cell"><strong>€120.15</strong></td>
+              <td><span class="pill pill-green">17.2%</span></td>
+            </tr>
+            <tr>
+              <td><strong>OTTO</strong></td>
+              <td>Creator 5</td>
+              <td class="num-cell">€679</td>
+              <td colspan="3">供应链成本 €406，其余参数同口径</td>
+              <td class="num-cell"><strong>~€108</strong></td>
+              <td><span class="pill pill-green">~18.9%</span></td>
+            </tr>
+            <tr>
+              <td><strong>bol.com</strong></td>
+              <td>Creator 5</td>
+              <td class="num-cell">€679</td>
+              <td colspan="3">供应链成本 €406，其余参数同口径</td>
+              <td class="num-cell"><strong>~€100</strong></td>
+              <td><span class="pill pill-green">~17.8%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: var(--text2);">C5 Pro 三大平台单台净利 <span class="hl-purple">€120-129</span>，去税净利率 17-19%，对 23kg 重货品类属健康水平。OTTO 月租 €99.90（按 25 台/月摊）拉低了约 €4 利润。重货退货（逆向运费+翻新）是利润测算中需持续关注的风险项。</p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <strong>数据来源：</strong>塔扇库存每日更新统计表（WPS）、移动空调库存统计表、ASD 泛欧市场可行性调研报告、Flashforge Creator 5 欧洲利润精算报告。<br>
+    <strong>报告日期：</strong>2026年7月13日 · <strong>报告人：</strong>实习生。
+  </div>
+
+</div>
+</body>
+</html>

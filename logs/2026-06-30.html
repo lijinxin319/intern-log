@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习总结与收获 · 2026年6月30日</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --border: #e4e8f0;
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8a91a8;
+    --accent: #3D6F94;
+    --accent-soft: #E9F1F6;
+    --accent-dark: #2c5270;
+    --orange: #C56443;
+    --orange-soft: #FDF0EB;
+    --green: #2d7a4f;
+    --green-soft: #E6F4EC;
+    --green-border: #85C9A0;
+    --yellow: #C68E31;
+    --yellow-soft: #FDF6E7;
+    --purple: #6b5b95;
+    --purple-soft: #EFEAF5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.7; }
+
+  .page { max-width: 980px; margin: 0 auto; padding: 36px 22px 64px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #3D6F94 0%, #2c5270 100%); border-radius: 14px; padding: 32px 30px; color: #fff; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .header::after { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .header::before { content: ''; position: absolute; right: 40px; bottom: -60px; width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+  .header .date { font-size: 13px; opacity: 0.85; letter-spacing: 1px; margin-bottom: 6px; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 13px; opacity: 0.9; position: relative; z-index: 1; }
+  .header .tags { margin-top: 14px; position: relative; z-index: 1; }
+  .header .tag { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; margin-right: 6px; }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 16px; font-weight: 600; color: var(--text); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 600; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 14px; }
+  .card.highlight { border-color: var(--accent); background: var(--accent-soft); }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .card p { color: var(--text2); font-size: 13.5px; margin-bottom: 8px; }
+  .card ul { padding-left: 18px; color: var(--text2); font-size: 13.5px; }
+  .card ul li { margin-bottom: 5px; }
+
+  /* Overview cards */
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .ov-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; }
+  .ov-card .ov-icon { font-size: 22px; margin-bottom: 8px; }
+  .ov-card .ov-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .ov-card .ov-desc { font-size: 12.5px; color: var(--text3); margin-bottom: 10px; }
+  .ov-card .ov-stat { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .ov-card .ov-stat-label { font-size: 11px; color: var(--text3); }
+  .ov-card.a { border-top: 3px solid var(--accent); }
+  .ov-card.b { border-top: 3px solid var(--orange); }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; }
+  table.data { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.data th { background: #F0F3F8; color: var(--text2); font-weight: 500; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  table.data td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data tr:hover td { background: #FAFBFE; }
+  table.data .num-cell { font-weight: 600; color: var(--accent); }
+  table.data .cat-tower { color: var(--accent); font-weight: 500; }
+  table.data .cat-desk { color: var(--orange); font-weight: 500; }
+  table.data .cat-small { color: var(--green); font-weight: 500; }
+  table.data .cat-special { color: var(--purple); font-weight: 500; }
+
+  /* Tag pills */
+  .pill { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; margin: 1px; }
+  .pill-blue { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); }
+  .pill-orange { background: var(--orange-soft); border: 1px solid var(--orange); color: var(--orange); }
+  .pill-green { background: var(--green-soft); border: 1px solid var(--green-border); color: var(--green); }
+  .pill-yellow { background: var(--yellow-soft); border: 1px solid #E6C070; color: var(--yellow); }
+  .pill-purple { background: var(--purple-soft); border: 1px solid var(--purple); color: var(--purple); }
+  .pill-gray { background: #f0f2f5; border: 1px solid var(--border); color: var(--text3); }
+
+  /* Bar chart */
+  .bar-row { display: flex; align-items: center; margin-bottom: 10px; gap: 10px; }
+  .bar-label { width: 150px; font-size: 12px; color: var(--text2); flex-shrink: 0; text-align: right; }
+  .bar-wrap { flex: 1; background: #eaedf3; border-radius: 4px; height: 22px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; }
+  .bar-val { font-size: 11px; font-weight: 600; color: #fff; }
+  .b-accent { background: var(--accent); }
+  .b-orange { background: var(--orange); }
+  .b-green { background: var(--green); }
+  .b-purple { background: var(--purple); }
+
+  /* Score grid */
+  .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .score-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .score-num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .score-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .score-desc { font-size: 11.5px; color: var(--text2); margin-top: 5px; line-height: 1.4; }
+
+  /* Insight box */
+  .insight { border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; }
+  .insight.blue { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .insight.orange { background: var(--orange-soft); border: 1px solid #E8A47F; }
+  .insight.green { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .insight h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .insight.blue h4 { color: var(--accent); }
+  .insight.orange h4 { color: var(--orange); }
+  .insight.green h4 { color: var(--green); }
+  .insight p { font-size: 13px; color: var(--text); }
+
+  /* Reflection list */
+  .reflect-list { list-style: none; }
+  .reflect-list li { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .reflect-list li:last-child { border-bottom: none; }
+  .reflect-num { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .reflect-list .rl-title { font-weight: 600; color: var(--text); font-size: 13.5px; margin-bottom: 3px; }
+  .reflect-list .rl-desc { font-size: 12.5px; color: var(--text2); }
+
+  /* Match table */
+  table.match { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  table.match th { padding: 10px 12px; text-align: center; font-weight: 600; color: #fff; }
+  table.match th.h1 { background: var(--accent); }
+  table.match th.h2 { background: var(--orange); }
+  table.match th.h3 { background: var(--green); }
+  table.match td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  table.match .dim { font-weight: 500; background: #f8f9fc; width: 110px; }
+  table.match .c1 { background: var(--accent-soft); text-align: center; }
+  table.match .c2 { background: var(--orange-soft); text-align: center; }
+  table.match .c3 { background: var(--green-soft); text-align: center; }
+
+  .profit-bar { display: inline-block; width: 60px; height: 8px; background: #eaedf3; border-radius: 4px; overflow: hidden; vertical-align: middle; margin-right: 6px; }
+  .profit-bar .pf { height: 100%; border-radius: 4px; }
+
+  .footer-note { font-size: 11.5px; color: var(--text3); margin-top: 18px; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; line-height: 1.8; }
+
+  @media (max-width: 680px) {
+    .overview-grid, .score-grid { grid-template-columns: 1fr 1fr; }
+    .bar-label { width: 100px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="date">2026年6月30日 · 实习日报</div>
+    <h1>实习总结与收获</h1>
+    <div class="subtitle">跨境电商选品实习 · 德国暖风机品类 · 市场分析 + 供应商开发</div>
+    <div class="tags">
+      <span class="tag">📊 市场竞品分析</span>
+      <span class="tag">💰 成本利润测算</span>
+    </div>
+  </div>
+
+  <!-- 今日工作概览 -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span> 今日工作概览</div>
+    <div class="overview-grid">
+      <div class="ov-card a">
+        <div class="ov-icon">📊</div>
+        <div class="ov-title">德国亚马逊暖风机市场对比分析</div>
+        <div class="ov-desc">陶瓷台式/塔式 vs PTC501桌面紧凑型</div>
+        <div class="ov-stat">10+ <span class="ov-stat-label">Bestseller竞品数据梳理</span></div>
+        <div style="margin-top:8px;"><span class="pill pill-blue">塔式主推</span><span class="pill pill-orange">桌面引流</span></div>
+      </div>
+      <div class="ov-card b">
+        <div class="ov-icon">🏭</div>
+        <div class="ov-title">新供应商开发</div>
+        <div class="ov-desc">自主联系并获取新供应商报价</div>
+        <div class="ov-stat">56 <span class="ov-stat-label">个SKU价格数据</span></div>
+        <div style="margin-top:8px;"><span class="pill pill-green">自主开发</span><span class="pill pill-yellow">认证齐全</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <p>今天完成了两项核心工作：<strong>一是基于亚马逊德国站Bestseller实时数据，完成了塔式暖风机与桌面紧凑型暖风机的市场对比分析</strong>，明确了选品方向；<strong>二是自主联系并收集到一家新供应商的完整价格表</strong>，为后续选品落地提供了供应链支撑。两项工作形成了"市场端→供应端"的闭环。</p>
+    </div>
+  </div>
+
+  <!-- 任务一：市场分析 -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span> 德国暖风机市场对比分析</div>
+
+    <div class="card highlight">
+      <h3>核心结论：塔式暖风机是德国市场的主导形态</h3>
+      <p>基于亚马逊德国站电暖Bestseller榜单（2026年6月）实测数据，<strong>陶瓷台式/塔式暖风机在市场体量、用户口碑、客单价、利润空间上全面领先桌面紧凑型</strong>。塔式代表产品Dreo Atom 316以10,280条评论、4.7星位居Bestseller第#2，月销500+台；而桌面紧凑型虽占据#1（Emerio，€19.77超低价引流），但评分仅3.9星，客单价低、同质化严重。</p>
+    </div>
+
+    <!-- 关键数据 -->
+    <div class="card">
+      <h3>关键市场数据</h3>
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="score-num">10,280</div>
+          <div class="score-label">塔式标杆评论数</div>
+          <div class="score-desc">Dreo Atom 316<br>Bestseller #2 · 4.7★</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">4.7★</div>
+          <div class="score-label">塔式平均评分</div>
+          <div class="score-desc">vs 桌面型 3.9–4.4★<br>口碑差距明显</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">€42–95</div>
+          <div class="score-label">塔式主销价格带</div>
+          <div class="score-desc">客单价€57–72<br>利润空间远高于桌面型</div>
+        </div>
+        <div class="score-card">
+          <div class="score-num">34dB</div>
+          <div class="score-label">德国市场静音标杆</div>
+          <div class="score-desc">Dreo 316核心卖点<br>德国消费者第一优先级</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 评论量对比 -->
+    <div class="card">
+      <h3>评论数量对比（市场认可度代理指标）</h3>
+      <div class="bar-row">
+        <div class="bar-label">Dreo 316 塔式</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:100%;"><span class="bar-val">10,280</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Rowenta 桌面</div>
+        <div class="bar-wrap"><div class="bar-fill b-orange" style="width:86%;"><span class="bar-val">8,804</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Pro Breeze 桌面</div>
+        <div class="bar-wrap"><div class="bar-fill b-orange" style="width:66%;"><span class="bar-val">6,745</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Dreo Atom One 塔</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:51%;"><span class="bar-val">5,274</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Dreo Solaris 塔式</div>
+        <div class="bar-wrap"><div class="bar-fill b-accent" style="width:44%;"><span class="bar-val">4,526</span></div></div>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--text3);">蓝色=塔式形态 &nbsp;|&nbsp; 橙色=桌面紧凑型 &nbsp;→&nbsp; 塔式单品评论量整体更高</div>
+    </div>
+
+    <!-- 四大原因 -->
+    <div class="card">
+      <h3>塔式暖风机在德国更受欢迎的四大原因</h3>
+      <div class="insight blue">
+        <h4>① 居住习惯匹配</h4>
+        <p>德国公寓普遍30–60㎡，塔式360°旋转能覆盖整个房间，比桌面局部加热更契合使用场景。Dreo强调"300%更大暖风循环范围"正是击中核心需求。</p>
+      </div>
+      <div class="insight blue">
+        <h4>② 静音是第一卖点</h4>
+        <p>德国消费者极重视噪音（GS认证也要求低噪），Dreo 316的34dB超静音成为核心竞争力。桌面型因气道窄普遍噪音更大，"噪音大"是桌面款最常见差评。</p>
+      </div>
+      <div class="insight blue">
+        <h4>③ 契合节能趋势</h4>
+        <p>2022能源危机后德国用户高度关注能耗。塔式更易搭载精准温控（NTC ±1°C）、ECO模式、定时功能。Dreo直接把"节能"放标题首词。</p>
+      </div>
+      <div class="insight blue">
+        <h4>④ 价格带错位优势</h4>
+        <p>桌面型€15-25段被极廉价款挤压利润薄，€40-55段又要与Rowenta品牌竞争；塔式在€42-95段形成清晰阶梯，每档都有差异化卖点，利润和品牌感更优。</p>
+      </div>
+    </div>
+
+    <!-- 选品建议 -->
+    <div class="card">
+      <h3>选品定位建议</h3>
+      <div class="tbl-wrap">
+        <table class="match">
+          <thead>
+            <tr>
+              <th style="background:#F0F3F8;color:var(--text2);text-align:left;">维度</th>
+              <th class="h1">🏰 陶瓷台式/塔式（利润款）</th>
+              <th class="h2">📦 PTC501桌面紧凑型（流量款）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="dim">市场对标</td><td class="c1">Dreo 316 / Solaris H3</td><td class="c2">Pro Breeze / Rowenta</td></tr>
+            <tr><td class="dim">建议定价</td><td class="c1"><strong>€45–65</strong>（带遥控/旋转）</td><td class="c2">€25–35机械 / €35–45电子</td></tr>
+            <tr><td class="dim">核心卖点</td><td class="c1">LED显温、超静音≤40dB、旋转、ECO</td><td class="c2">轻巧便携、快速升温、桌面/床头</td></tr>
+            <tr><td class="dim">合规重点</td><td class="c1">CE、GS（TÜV/VDE）、WEEE、IP20+</td><td class="c2">CE、GS、IP20，浴室款需IP24</td></tr>
+            <tr><td class="dim">备货策略</td><td class="c1"><strong>主推，Q3备货，10月前到仓</strong></td><td class="c2">配套引流，走量覆盖预算用户</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 收获与反思 -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span> 今日收获与反思</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <ul class="reflect-list">
+        <li>
+          <span class="reflect-num">1</span>
+          <div>
+            <div class="rl-title">学会了用数据驱动选品决策，而非凭感觉</div>
+            <div class="rl-desc">今天的市场分析让我意识到，选品不能只看"这个产品好不好"，而要用Bestseller排名、评论数、评分、价格带这些可量化指标去验证市场真实需求。塔式暖风机之所以是主推方向，不是因为直觉，而是因为10,280条评论、4.7星、#2排名这些硬数据在支撑。</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">2</span>
+          <div>
+            <div class="rl-title">理解了"市场端→供应端"的闭环思维</div>
+            <div class="rl-desc">以前觉得找供应商和看市场是两件事，今天把亚马逊竞品分析和新供应商价格表放在一起对照后才发现：只有同时掌握"德国卖多少钱"和"工厂出厂多少钱"，才能算出毛利、判断一个产品值不值得做。市场分析告诉我要选塔式2000W，供应商数据告诉我最适合做利润款的型号——两端缺一不可。</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">3</span>
+          <div>
+            <div class="rl-title">主动开发供应商是实习中最重要的能力突破</div>
+            <div class="rl-desc">今天独立联系到新供应商并拿到完整56个SKU价格表，这是我第一次自己完成从寻源到拿报价的全流程。过程中体会到：供应商沟通要明确需求（目标市场、功率、认证、起订量），拿到报价后要立刻做结构化整理（按功率/形态分类、换算汇率、对标竞品），否则一堆数字只是一堆数字。</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">4</span>
+          <div>
+            <div class="rl-title">对德国市场的消费文化有了更深认识</div>
+            <div class="rl-desc">通过分析Bestseller竞品的标题关键词和差评，我理解了德国消费者的三个核心诉求：静音（leise）、节能（energiesparend）、安全认证（GS/TÜV）。这直接影响后续Listing文案和卖点排序——不能照搬国内电商的卖点逻辑，要围绕德国人的使用场景和文化偏好来组织信息。</div>
+          </div>
+        </li>
+        <li>
+          <span class="reflect-num">5</span>
+          <div>
+            <div class="rl-title">认识到合规认证是进入德国市场的第一道门槛</div>
+            <div class="rl-desc">Top 10竞品均有GS认证背书，这是德国消费者的基础信任要素。新供应商产品虽然CE/ROHS齐全，但GS认证（TÜV/VDE）还需要单独确认——这是下一步必须跟厂家核实的关键事项，直接关系到能否上架和定价段位。</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="footer-note">
+    <strong>数据来源：</strong><br>
+    • 亚马逊德国站电暖Bestseller实时榜单（2026年6月30日抓取）<br>
+    • Dreo Atom 316 / Solaris H3 / Pro Breeze 等竞品商品页<br>
+    • 新供应商《2026年新产品价格表》（56个SKU，欧规出厂价）<br>
+    • 参考汇率：1 EUR ≈ 7.8 CNY（仅供测算，非实际结算汇率）<br>
+    • 毛利测算未计入物流、平台佣金、税费等，为出厂价到零售价的粗略空间，实际利润以完整成本模型为准。
+  </div>
+
+</div>
+</body>
+</html>
