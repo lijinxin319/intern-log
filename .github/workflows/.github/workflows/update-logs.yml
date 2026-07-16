@@ -1,0 +1,31 @@
+name: Update Logs Index
+
+on:
+  push:
+    paths:
+      - 'logs/*.html'
+  workflow_dispatch:
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate logs.json
+        run: |
+          cd logs
+          files=$(ls *.html 2>/dev/null | jq -R -s -c 'split("\n")[:-1]')
+          echo "{\"files\":$files,\"updated\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > ../logs.json
+          cat ../logs.json
+
+      - name: Commit logs.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add logs.json
+          git diff --staged --quiet || git commit -m "Update logs.json [skip ci]"
+          git push
+
