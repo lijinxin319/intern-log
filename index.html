@@ -343,15 +343,15 @@
 
    async function loadLogs() {
      try {
-       const resp = await fetch(LOG_JSON + '?t=' + Date.now());
+       var resp = await fetch(LOG_JSON + '?t=' + Date.now());
        if (!resp.ok) {
-         logContainer.innerHTML = \`<div class="error-msg">加载日志列表失败，请刷新重试。</div>\`;
+         logContainer.innerHTML = '<div class="error-msg">加载日志列表失败，请刷新重试。</div>';
          return;
        }
-       const data = await resp.json();
+       var data = await resp.json();
        renderLogs(data.files || []);
      } catch (err) {
-       logContainer.innerHTML = \`<div class="error-msg">加载失败：\${err.message}</div>\`;
+       logContainer.innerHTML = '<div class="error-msg">加载失败：' + err.message + '</div>';
      }
    }
 
