@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实习日志</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f5f6f8;
+    --card-bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .header .badge {
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ── Main ── */
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ── Stats ── */
+  .stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+  }
+  .stat-card .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -1px;
+  }
+  .stat-card .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* ── Log List ── */
+  .log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .log-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.15s, transform 0.1s;
+    cursor: pointer;
+  }
+  .log-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+  .log-date {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+  .log-date .day {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .log-date .month {
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .log-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .log-info .title {
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .log-info .meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .log-arrow {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-size: 18px;
+  }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+  }
+  .empty .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+  }
+  .empty h3 {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .empty p {
+    font-size: 14px;
+  }
+
+  /* ── Loading / Error ── */
+  .loading, .error-msg {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .error-msg { color: #dc2626; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .stats { flex-direction: column; }
+    .log-item { padding: 14px 16px; gap: 12px; }
+    .log-date { width: 46px; height: 46px; }
+    .log-date .day { font-size: 18px; }
+  }
+
+  /* ── Log content page (embedded in iframe or direct) ── */
+  .log-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <h1>实习日志</h1>
+    <span class="badge" id="totalBadge">加载中…</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num" id="totalCount">-</div>
+      <div class="label">总日志数</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="currentMonth">-</div>
+      <div class="label">本月日志</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="latestDate">-</div>
+      <div class="label">最新日期</div>
+    </div>
+  </div>
+
+  <div id="logContainer">
+    <div class="loading">正在加载日志列表…</div>
+  </div>
+</div>
+
+<div class="footer">
+  由 GitHub Pages 驱动 · 日志存放于 <code>logs/</code> 目录
+</div>
+
+<!-- ── Script ── -->
+<script>
+(function() {
+  // ============================================================
+  // 配置：请将下面两个值改为你的 GitHub 用户名和仓库名
+  // ============================================================
+  const OWNER = 'lijinxin319';
+  const REPO  = 'intern-log';            // ← 改成你的仓库名（默认 intern-log）
+
+  const LOG_DIR = 'logs';
+  const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${LOG_DIR}`;
+
+  const logContainer = document.getElementById('logContainer');
+  const totalBadge   = document.getElementById('totalBadge');
+
+  // ── Parse filename → date ──
+  //    Supports: 2026-07-16.html, 0716.html, 20260716.html, etc.
+  function parseDate(filename) {
+    const name = filename.replace(/\.html?$/i, '');
+    const m1 = name.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (m1) return new Date(+m1[1], +m1[2]-1, +m1[3]);
+    const m2 = name.match(/^(\d{4})(\d{2})(\d{2})$/);
+    if (m2) return new Date(+m2[1], +m2[2]-1, +m2[3]);
+    const m3 = name.match(/^(\d{2})(\d{2})$/);
+    if (m3) { const now = new Date(); return new Date(now.getFullYear(), +m3[1]-1, +m3[2]); }
+    return null;
+  }
+
+  function formatDate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function formatMonth(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+  }
+
+  const MONTHS_ZH = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  function renderLogs(files) {
+    if (!files || files.length === 0) {
+      logContainer.innerHTML = `
+        <div class="empty">
+          <div class="icon">📋</div>
+          <h3>还没有日志</h3>
+          <p>将 HTML 日志文件上传到 <code>logs/</code> 目录即可自动显示</p>
+        </div>`;
+      totalBadge.textContent = '0 篇';
+      document.getElementById('totalCount').textContent = '0';
+      document.getElementById('currentMonth').textContent = '0';
+      document.getElementById('latestDate').textContent = '-';
+      return;
+    }
+
+    // Parse and sort (newest first)
+    const parsed = files
+      .map(f => ({ name: f.name, download_url: f.download_url, date: parseDate(f.name) }))
+      .filter(f => f.date !== null)
+      .sort((a, b) => b.date - a.date);
+
+    if (parsed.length === 0) {
+      logContainer.innerHTML = `
+        <div class="empty">
+          <div class="icon">📋</div>
+          <h3>未识别到日志文件</h3>
+          <p>请使用 <code>YYYY-MM-DD.html</code> 格式命名日志文件</p>
+        </div>`;
+      return;
+    }
+
+    // Stats
+    const now = new Date();
+    const thisMonth = formatMonth(now);
+    const thisMonthCount = parsed.filter(f => formatMonth(f.date) === thisMonth).length;
+
+    document.getElementById('totalCount').textContent = parsed.length;
+    document.getElementById('currentMonth').textContent = thisMonthCount;
+    document.getElementById('latestDate').textContent = formatDate(parsed[0].date);
+    totalBadge.textContent = `${parsed.length} 篇`;
+
+    // Render list
+    let html = '<div class="log-list">';
+    parsed.forEach(log => {
+      const d = log.date;
+      html += `
+        <a class="log-item" href="${log.download_url}" target="_blank">
+          <div class="log-date">
+            <span class="day">${d.getDate()}</span>
+            <span class="month">${MONTHS_ZH[d.getMonth()]}</span>
+          </div>
+          <div class="log-info">
+            <div class="title">${formatDate(d)} 实习日志</div>
+            <div class="meta">${log.name}</div>
+          </div>
+          <span class="log-arrow">→</span>
+        </a>`;
+    });
+    html += '</div>';
+    logContainer.innerHTML = html;
+  }
+
+  // ── Fetch file list from GitHub API ──
+  async function loadLogs() {
+    try {
+      const resp = await fetch(API_BASE + '?t=' + Date.now());
+      if (resp.status === 403) {
+        // Rate limited — GitHub API allows 60 req/h unauthenticated
+        logContainer.innerHTML = `
+          <div class="error-msg">
+            GitHub API 请求次数超限（60次/小时）。<br>
+            请稍后再试，或 <a href="https://github.com/${OWNER}/${REPO}/tree/main/${LOG_DIR}" target="_blank">直接在 GitHub 查看</a>。
+          </div>`;
+        return;
+      }
+      if (!resp.ok) {
+        logContainer.innerHTML = `
+          <div class="error-msg">
+            加载失败：HTTP ${resp.status}<br>
+            请确认 GitHub Pages 已启用，仓库名和用户名配置正确。
+          </div>`;
+        return;
+      }
+      const files = await resp.json();
+      const htmlFiles = Array.isArray(files)
+        ? files.filter(f => f.type === 'file' && /\.html?$/i.test(f.name))
+        : [];
+      renderLogs(htmlFiles);
+    } catch (err) {
+      logContainer.innerHTML = `<div class="error-msg">加载失败：${err.message}</div>`;
+    }
+  }
+
+  loadLogs();
+})();
+</script>
+
+</body>
+</html>
